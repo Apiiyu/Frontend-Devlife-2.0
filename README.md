@@ -1,4 +1,4 @@
-# dev-fronted
+# Devlife 2.0 - Frontend Dev
 
 ## Project setup
 ```
