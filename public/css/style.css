@@ -40,6 +40,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: none;
+  font-family: "Raleway", sans-serif;
 }
 
 body {
@@ -65,8 +67,23 @@ body {
   .home .sidebar {
     background-color: red;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
+    position: static;
+    position: -webkit-sticky;
+    top: 0px;
+    left: px;
+    width: 100%;
+    max-width: 20%;
+    height: 100px;
+    border-radius: 1px 1px 15px 15px;
   }
 
+  .home .nav-item {
+    list-style: none;
+  }
+
+  .home .main-content {
+    height: 500px;
+  }
   /* Login Section Begin */
 
   .login .bg-sign {
@@ -103,7 +120,7 @@ body {
   }
 
   .login .content-login {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-left: -50px;
   }
 
@@ -130,47 +147,134 @@ body {
   }
 
   .login .content-login .main-content {
-    margin-top: 150px;
-    margin-left: -260px;
+    position: relative;
+    top: 170px;
+    left: 50px;
   }
 
   .login .content-login .main-content h5 {
     color: var(--primary-color);
+    font-weight: 400;
+    font-family: "Raleway", sans-serif;
+    position: absolute;
+    top: 0;
+    left: 25px;
+  }
+
+  .login .content-login .main-content a {
+    color: var(--primary-color);
     font-weight: bold;
     font-family: "Raleway", sans-serif;
+    font-size: 20px;
   }
 
   .login .content-login .main-content hr {
     width: 104px;
     height: 5px;
-    margin-left: 412px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
     border-radius: 3px;
     background-color: var(--primary-color);
     color: var(--primary-color);
   }
 
-  .login .content-login .main-content .btn-login {
+  .login .content-login .form-login {
     position: relative;
+    top: 200px;
+    left: 60px;
+    max-width: 550px;
+  }
+
+  .login .content-login .form-login .form-nis {
+    position: relative;
+    top: 40px;
+    left: 15px;
+  }
+
+  .login .content-login .form-login .form-nis label {
+    position: absolute;
     top: 0;
     left: 0;
+    color: #4e4081;
+    font-weight: bold;
   }
 
-  .login .content-login .main-content .btn-login button {
+  .login .content-login .form-login .form-nis input {
+    position: absolute;
+    width: 350px;
+    top: 35px;
+    left: 0px;
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px 14px;
+    font-family: "Cascadia code", sans-serif;
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .login .content-login .form-login .form-password {
+    position: relative;
+    top: 120px;
+    left: 15px;
+  }
+
+  .login .content-login .form-login .form-password label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #4e4081;
+    font-weight: bold;
+  }
+
+  .login .content-login .form-login .form-password input {
+    position: absolute;
+    width: 350px;
+    top: 45px;
+    left: 0px;
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px 14px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .login .content-login .form-login .form-password a {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    color: #4e4081;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .login .content-login .form-login .btn-submit {
+    position: relative;
+    top: 260px;
+    left: 15px;
+  }
+
+  .login .content-login .form-login button {
     background-color: var(--primary-color);
     padding: 10px 20px;
-    position: relative;
-    top: 0;
-    left: 35px;
-    width: 284px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 350px;
     font-family: "Raleway", sans-serif;
+    border-radius: 8px;
   }
 
-  .login .content-login .main-content .btn-login img {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    top: 8px;
-    left: 455px;
+  .login .content-login .form-login button:hover {
+    transition: all 0.5s;
+    background-color: #4d379b;
+    cursor: pointer;
   }
 }
 

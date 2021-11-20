@@ -18,13 +18,33 @@
           </div>
 
           <div class="main-content">
-            <h5>Sign in to your Account</h5>
+            <h5>Don’t have an account yet? <a href="/register">Create it here</a></h5>
             <hr class="decoration mb-4">
-            <div class="btn-login">
-              <button class="btn btn-primary btn-sm">Sign In with Google</button>
-              <img src="../../public/images/icon-google.svg" alt="icon-google">
-            </div>
           </div>
+
+          <form action="" method="POST">
+            <div class="form-login">
+              <div class="form-nis">
+                <label for="nis">Nomor Induk Siswa</label>
+                <input type="number" id="nis" class="form-control" placeholder="Your NIS">
+              </div>
+
+              <div class="form-password">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Your Password">
+                <a href="forgotpassword">Forgot your password?</a>
+              </div>
+
+              <div class="btn-submit">
+                <button class="btn btn-primary btn-sm">Sign In</button>
+              </div>
+            </div>
+          </form>
+
+
+          <!-- <div class="user-gallery">
+            <img src="../../public/images/people.png" alt="people">
+          </div> -->
         </div>
       </div>      
     </div>
