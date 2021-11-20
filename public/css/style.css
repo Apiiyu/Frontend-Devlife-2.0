@@ -84,9 +84,13 @@ body {
   .home .main-content {
     height: 500px;
   }
-  /* Login Section Begin */
 
-  .login .bg-sign {
+  /* Dashboard Section End */
+
+  /* Sign In Section Begin */
+
+  .login .bg-sign,
+  .register .bg-sign {
     background: url("../images/bg-sign.jpg") no-repeat;
     position: absolute;
     width: 100%;
@@ -95,14 +99,16 @@ body {
     top: 0px;
   }
 
-  .login .greeting-text {
+  .login .greeting-text,
+  .register .greeting-text {
     position: relative;
     top: 0;
     right: 0;
     left: 0;
   }
 
-  .login .greeting-text .text {
+  .login .greeting-text .text,
+  .register .greeting-text .text {
     position: absolute;
     width: 300px;
     height: 163px;
@@ -115,28 +121,38 @@ body {
     font-family: "Raleway", sans-serif;
   }
 
-  .login .greeting-text .text span {
+  .login .greeting-text .text span,
+  .register .greeting-text .text span {
     font-family: "Oleo Script", sans-serif;
   }
 
-  .login .content-login {
+  .login .main-content-login,
+  .register .main-content-register {
+    max-width: 550px;
+  }
+
+  .login .content-login,
+  .register .content-register {
     margin-top: 40px;
     margin-left: -50px;
   }
 
-  .login .content-login .img-app {
+  .login .content-login .img-app,
+  .register .content-register .img-app {
     position: relative;
     top: 0;
     left: 0;
   }
 
-  .login .content-login .img-app img {
+  .login .content-login .img-app img,
+  .register .content-register .img-app img {
     position: absolute;
     top: 0;
     left: 0;
   }
 
-  .login .content-login .img-app h4 {
+  .login .content-login .img-app h4,
+  .register .content-register .img-app h4 {
     position: absolute;
     top: 80px;
     left: 150px;
@@ -179,20 +195,28 @@ body {
     color: var(--primary-color);
   }
 
-  .login .content-login .form-login {
+  .login .content-login .form-login,
+  .register .content-register .form-register {
     position: relative;
     top: 200px;
     left: 60px;
     max-width: 550px;
+    font-family: "Poppins", sans-serif;
   }
 
-  .login .content-login .form-login .form-nis {
+  .login .content-login .form-login .form-nis,
+  .register .content-register .form-register .form-nis,
+  .register .content-register .form-register .form-name,
+  .register .content-register .form-register .form-email {
     position: relative;
     top: 40px;
     left: 15px;
   }
 
-  .login .content-login .form-login .form-nis label {
+  .login .content-login .form-login .form-nis label,
+  .register .content-register .form-register .form-nis label,
+  .register .content-register .form-register .form-name label,
+  .register .content-register .form-register .form-email label {
     position: absolute;
     top: 0;
     left: 0;
@@ -200,7 +224,10 @@ body {
     font-weight: bold;
   }
 
-  .login .content-login .form-login .form-nis input {
+  .login .content-login .form-login .form-nis input,
+  .register .content-register .form-register .form-nis input,
+  .register .content-register .form-register .form-name input,
+  .register .content-register .form-register .form-email input {
     position: absolute;
     width: 350px;
     top: 35px;
@@ -209,8 +236,17 @@ body {
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     padding: 20px 14px;
-    font-family: "Cascadia code", sans-serif;
     -moz-appearance: textfield;
+  }
+
+  .login .content-login .form-login .form-nis span,
+  .register .content-register .form-register .form-nis span,
+  .register .content-register .form-register .form-name span,
+  .register .content-register .form-register .form-email span {
+    position: absolute;
+    top: 45px;
+    right: 210px;
+    color: var(--primary-color);
   }
 
   input::-webkit-outer-spin-button,
@@ -219,13 +255,15 @@ body {
     margin: 0;
   }
 
-  .login .content-login .form-login .form-password {
+  .login .content-login .form-login .form-password,
+  .register .content-register .form-register .form-password {
     position: relative;
     top: 120px;
     left: 15px;
   }
 
-  .login .content-login .form-login .form-password label {
+  .login .content-login .form-login .form-password label,
+  .register .content-register .form-register .form-password label {
     position: absolute;
     top: 10px;
     left: 0;
@@ -233,7 +271,8 @@ body {
     font-weight: bold;
   }
 
-  .login .content-login .form-login .form-password input {
+  .login .content-login .form-login .form-password input,
+  .register .content-register .form-register .form-password input {
     position: absolute;
     width: 350px;
     top: 45px;
@@ -245,7 +284,16 @@ body {
     font-family: "Poppins", sans-serif;
   }
 
-  .login .content-login .form-login .form-password a {
+  .login .content-login .form-login .form-password span,
+  .register .content-register .form-register .form-password span {
+    position: absolute;
+    top: 53px;
+    right: 210px;
+    color: var(--primary-color);
+  }
+
+  .login .content-login .form-login .form-password a,
+  .register .content-register .form-register .form-password a {
     position: absolute;
     top: 100px;
     left: 0;
@@ -254,13 +302,15 @@ body {
     font-size: 14px;
   }
 
-  .login .content-login .form-login .btn-submit {
+  .login .content-login .form-login .btn-submit,
+  .register .content-register .form-register .btn-submit {
     position: relative;
     top: 260px;
     left: 15px;
   }
 
-  .login .content-login .form-login button {
+  .login .content-login .form-login button,
+  .register .content-register .form-register .btn-submit button {
     background-color: var(--primary-color);
     padding: 10px 20px;
     position: absolute;
@@ -271,10 +321,52 @@ body {
     border-radius: 8px;
   }
 
-  .login .content-login .form-login button:hover {
+  .login .content-login .form-login button:hover,
+  .register .content-register .form-register .btn-submit button:hover {
     transition: all 0.5s;
     background-color: #4d379b;
     cursor: pointer;
+  }
+
+  /* Sign Up Sectin End */
+
+  /* Sign In Section Begin */
+  .register .content-register .form-register {
+    top: 130px;
+  }
+
+  .register .content-register .form-register .form-nis span,
+  .register .content-register .form-register .form-email span {
+    top: 45px;
+  }
+
+  .register .content-register .form-register .form-name {
+    top: 130px;
+  }
+
+  .register .content-register .form-register .form-email {
+    top: 220px;
+  }
+
+  .register .content-register .form-register .form-password {
+    top: 300px;
+  }
+
+  .register .content-register .form-register .form-password p {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    color: #4e4081;
+    font-size: 14px;
+  }
+
+  .register .content-register .form-register .form-password a {
+    left: 155px;
+    font-weight: bold;
+  }
+
+  .register .content-register .form-register .btn-submit {
+    top: 440px;
   }
 }
 
