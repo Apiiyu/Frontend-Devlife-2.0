@@ -3,14 +3,9 @@
     <div class="row">
       <div class="col-lg-6 col-xl-6 col-xxl-6">
         <img src="../../public/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
-        <div class="greeting-text">
-          <span class="text">
-            Welcome to <span>absensi</span>
-          </span>
-        </div>
       </div>
 
-      <div class="col-lg-6 col-xl-6 col-xxl-6 main-content-login">
+      <div class="col-lg-5 col-xl-6 col-xxl-6 main-content-login">
         <div class="content-login">
           <div class="img-app d-flex justify-content-between">
             <img src="../../public/images/app-logo.png" alt="app-logo">
