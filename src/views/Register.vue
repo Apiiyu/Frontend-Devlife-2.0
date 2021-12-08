@@ -26,6 +26,12 @@
                 <span class="material-icons">person</span>
               </div>
 
+              <div class="form-jurusan">
+                <label for="jurusan">Jurusan</label>
+                <input type="text" id="jurusan" class="form-control" placeholder="Your Jurusan">
+                <span class="material-icons">person</span>
+              </div>
+
               <div class="form-email">
                 <label for="email">Email</label>
                 <input type="text" id="email" class="form-control" placeholder="Your Name">
