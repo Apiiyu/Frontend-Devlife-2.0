@@ -1,46 +1,42 @@
 <template>
-  <section class="home">
-    <div class="row">
-      <div class="col-lg-3 sidebar">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12 col-xxl-12">
-            <section>
-              sidebar
-            </section>
-          </div>
-        </div>
+  <div class="main-wrapper">
+    <div class="navbar-bg"></div>
+    <!-- Section Navbar Begin -->
+      <Navbar />
+    <!-- Section Navbar End -->
 
-        <div class="row">
-          <div class="col-lg-12 col-xl-12 col-xxl-12">
-            <section class="">sidebar</section>
+
+    <!-- Section Sidebar Begin -->
+      <Sidebar />
+    <!-- Section Sidebar End -->
+
+
+    <!-- Section Content Begin -->
+      <div class="main-content">
+        <section class="section mt-5">
+          <div class="section-header">
+            <h1>Dashboard</h1>
+
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Home</a></div>
+              <div class="breadcrumb-item">Dashboard</div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
-
-      <div class="col-lg-9 col-xl-9 col-xxl-9">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12 col-xxl-12">
-            <Navigation />
-          </div>
-
-          <div class="col-lg-12 col-xl-12 col-xxl-12 main-content">
-            <div class="float-left">Navigation</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
-import Navigation from '@/components/Navigation.vue'
+import Navbar from '@/components/navigation/Navbar.vue'
+import Sidebar from '@/components/navigation/Sidebar.vue'
 
 export default {
   name: 'Home',
   components: {
-    Navigation
+    Navbar,
+    Sidebar
   }
 }
 </script>
