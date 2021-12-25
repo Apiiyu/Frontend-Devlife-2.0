@@ -2,13 +2,13 @@
   <section class="register">
     <div class="row">
       <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <img src="../../public/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
+        <img src="@/assets/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
       </div>
 
       <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 main-content-register">
         <div class="content-register">
           <div class="img-app d-flex justify-content-between">
-            <img src="../../public/images/app-logo.png" alt="app-logo">
+            <img src="@/assets/images/app-logo.png" alt="app-logo">
             <h4>Dev App</h4>
           </div>
 

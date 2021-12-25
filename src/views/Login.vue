@@ -2,13 +2,13 @@
   <section class="login">
     <div class="row">
       <div class="col-lg-6 col-xl-6 col-xxl-6">
-        <img src="../../public/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
+        <img src="@/assets/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
       </div>
 
       <div class="col-lg-5 col-xl-6 col-xxl-6 main-content-login">
         <div class="content-login">
           <div class="img-app d-flex justify-content-between">
-            <img src="../../public/images/app-logo.png" alt="app-logo">
+            <img src="@/assets/images/app-logo.png" alt="app-logo">
             <h4>Dev App</h4>
           </div>
 
@@ -21,19 +21,19 @@
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="number" id="nis" class="form-control" placeholder="Your NIS">
+                <input type="email" name="email" id="nis" class="form-control" placeholder="Your NIS">
                 <span class="material-icons">person</span>
               </div>
 
               <div class="form-password">
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="Your Password">
+                <input type="password"  name="password" id="password" class="form-control" placeholder="Your Password">
                 <span class="material-icons">https</span>
                 <a href="forgotpassword">Forgot your password?</a>
               </div>
 
               <div class="btn-submit">
-                <button class="btn btn-primary btn-sm">Sign In</button>
+                <button type="button" class="btn btn-primary btn-sm" @click="login">Sign In</button>
               </div>
             </div>
           </form>
@@ -44,7 +44,31 @@
 </template>
 
 <script>
+
+
 export default {
-  name: 'LoginApp'
+  name: 'LoginApp',
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login: function(){
+      console.log('email', this.email)
+      let email = this.email
+      let password = this.password
+      console.log(email, password)
+      this.$store.dispatch('login', { email, password })
+        .then(() => {
+          alert('Login Successfully')
+          console.log('Login Successfully')
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    }
+  }
 }
 </script>
