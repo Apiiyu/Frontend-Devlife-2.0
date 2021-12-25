@@ -21,13 +21,13 @@
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="email" name="email" id="nis" class="form-control" placeholder="Your NIS">
+                <input type="email" name="email" id="nis" class="form-control" placeholder="Your NIS" v-model="email">
                 <span class="material-icons">person</span>
               </div>
 
               <div class="form-password">
                 <label for="password">Password</label>
-                <input type="password"  name="password" id="password" class="form-control" placeholder="Your Password">
+                <input type="password"  name="password" id="password" class="form-control" placeholder="Your Password" v-model="password">
                 <span class="material-icons">https</span>
                 <a href="forgotpassword">Forgot your password?</a>
               </div>
@@ -59,15 +59,15 @@ export default {
       console.log('email', this.email)
       let email = this.email
       let password = this.password
-      console.log(email, password)
+      console.log('ini email', email)
       this.$store.dispatch('login', { email, password })
-        .then(() => {
-          alert('Login Successfully')
-          console.log('Login Successfully')
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
+      .then(() => {
+        alert('Login Successfully')
+        console.log('Login Successfully')
+      })
+      .catch((error) => {
+        console.log('error', error)
+      })
     }
   }
 }

@@ -209,7 +209,7 @@
               <i class="fas fa-cog"></i> Settings
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item has-icon text-danger">
+            <a href="#" class="dropdown-item has-icon text-danger" @click="logout">
               <i class="fas fa-sign-out-alt"></i> Logout
             </a>
           </div>
@@ -217,3 +217,23 @@
       </ul>
     </nav>
 </template>
+
+<script>
+export default {
+  name: 'Navbar',
+  data(){
+
+  },
+  mounted(){
+
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+      .then(() => {
+         window.location.href = "/"
+      })
+    }
+  }
+}
+</script>
