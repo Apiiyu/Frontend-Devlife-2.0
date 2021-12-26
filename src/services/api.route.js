@@ -3,6 +3,7 @@ class ApiRoute {
     // Version 1.0
     this.login = '/api/login'
     this.register = '/api/register'
+    this.checkBearer = '/api/profile'
   }
 } 
 
