@@ -59,7 +59,7 @@
           <div class="col-lg-4 col-xl-4 col-xxl-4">
             <div class="card">
               <div class="card-body calendar">
-                Calendar
+                <b-calendar v-model="value" :date-disabled-fn="dateDisabled" locale="id"></b-calendar>
               </div>
             </div>
           </div>
@@ -80,6 +80,9 @@ export default {
     Sidebar,
   },
   data(){
+    return{
+      value: ''
+    }
   },
   mounted(){
     this.getDateTime()
@@ -97,6 +100,12 @@ export default {
       $('.info-day').html(day)
       $('.info-fulldate').html(fulldate)
     },
+    dateDisabled(ymd, date){
+      const weekday = date.getDay()
+      // const day = date.getDate()
+
+      return weekday === 0 || weekday === 6 
+    }
   }
 }
 </script>
