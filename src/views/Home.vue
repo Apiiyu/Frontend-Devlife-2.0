@@ -15,11 +15,11 @@
       <div class="main-content">
         <div class="row">
           <div class="col-lg-12 col-xl-12 col-xxl-12">
-            <section class="section mt-5 h-50">
+            <section class="section mt-3 h-50">
               <div class="section-header">
                 <p class="title-header">Dashboard</p>
 
-                <div class="section-header-breadcrumb">
+                <div class="section-header-breadcrumb mt-4 position-absolute">
                   <div class="breadcrumb-item active"><a href="#">Home</a></div>
                   <div class="breadcrumb-item">Dashboard</div>
                 </div>
@@ -49,7 +49,7 @@
 
                     <p class="info-datetime"></p>
                     <p class="info-day"></p>
-                    <p class="info-fulldate"></p>
+                    <p class="info-f"></p>
                   </div>
                 </div>
               </div>
@@ -67,6 +67,12 @@
       </div>
   </div>
 </template>
+
+<style scoped>
+.btn-primary:active {
+  backgroud-color: #4E4081 !important;
+}
+</style>
 
 <script>
 // @ is an alias to /src

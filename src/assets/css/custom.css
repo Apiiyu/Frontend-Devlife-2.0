@@ -443,6 +443,17 @@ body {
   .main-wrapper .main-content .calendar .comp-full-calendar {
     height: 300px !important;
   }
+
+  .sidebar-brand h4 {
+    font-weight: bolder;
+    color: var(--primary-color);
+  }
+  
+  .section-header .title-header {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
