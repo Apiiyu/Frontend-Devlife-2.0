@@ -17,11 +17,11 @@
             <hr class="decoration mb-4">
           </div>
 
-          <form action="" method="POST">
+          <form method="POST" @submit.prevent="login()">
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="email" name="email" id="nis" class="form-control" placeholder="Your NIS" v-model="email">
+                <input type="text" name="nis" id="nis" class="form-control" placeholder="Your NIS" v-model="nis">
                 <span class="material-icons">person</span>
               </div>
 
@@ -33,7 +33,7 @@
               </div>
 
               <div class="btn-submit">
-                <button type="button" class="btn btn-primary btn-sm" @click="login">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
               </div>
             </div>
           </form>
@@ -44,30 +44,33 @@
 </template>
 
 <script>
+import { createAlert } from '@/helper/sweetAlert.js'
 
 
 export default {
   name: 'LoginApp',
   data() {
     return {
-      email: '',
-      password: ''
+      nis: null,
+      password: null
     }
   },
   methods: {
-    login: function(){
-      console.log('email', this.email)
-      let email = this.email
-      let password = this.password
-      console.log('ini email', email)
-      this.$store.dispatch('login', { email, password })
-      .then(() => {
-        alert('Login Successfully')
-        console.log('Login Successfully')
-      })
-      .catch((error) => {
-        console.log('error', error)
-      })
+    login(){
+        console.log('nis', this.nis)
+        let nis = this.nis
+        let password = this.password
+        console.log('ini password', nis)
+        this.$store.dispatch('login', { nis, password })
+        .then(() => {
+            createAlert('success', 'Success', 'Success login into your account!')
+            setTimeout(() => {
+                this.$router.push({ name: 'Home'})
+            }, 1000)
+        })
+        .catch((error) => {
+            console.log('error', error)
+        })
     }
   }
 }

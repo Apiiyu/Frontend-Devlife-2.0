@@ -58,7 +58,7 @@
 
 <script>
 import { createAccount } from '@/services/authentication/register.service.js'
-// import { createAlert } from '@/helper/sweetAlert.js'
+import { createAlert } from '@/helper/sweetAlert.js'
 
 export default {
     name: 'RegisterApp',
@@ -88,7 +88,7 @@ export default {
             // // hit api
             createAccount(data)
                 .then((result) => {
-                    this.$swal('Success create new Account!')
+                    createAlert('success', 'Success', 'Success login into your account!')
                     setTimeout(() => {
                         this.$router.push({ name: 'Sign In'})
                     }, 1000)
