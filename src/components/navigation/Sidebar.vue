@@ -2,10 +2,8 @@
   <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
-          </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <img src="@/assets/images/logo.png" alt="app-logo" width="30" class="mb-2">
+            <h4 class="d-inline-block ml-3 mt-4">Devector</h4>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>

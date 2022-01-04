@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ProtectRoute from '@/utils/ProtectRoute'
+// import ProtectRoute from '@/utils/ProtectRoute'
 
 Vue.use(VueRouter)
 
@@ -23,7 +23,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
-    beforeEnter:ProtectRoute
+    // beforeEnter:ProtectRoute
   },
   
 ]
