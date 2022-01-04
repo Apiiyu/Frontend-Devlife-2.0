@@ -13,7 +13,7 @@
           </div>
 
           <div class="main-content">
-            <h5>Don’t have an account yet? <router-link :to="{ name: 'RegisterApp' }">Create it here</router-link></h5>
+            <h5>Don’t have an account yet? <router-link :to="{ name: 'Sign Up' }">Create it here</router-link></h5>
             <hr class="decoration mb-4">
           </div>
 
