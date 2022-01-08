@@ -3204,7 +3204,7 @@ pre {
   border: none;
   position: relative;
   margin-bottom: 5px;
-  padding: 20px;
+  padding: 15px 0;
   display: flex;
   align-items: center;
 }
@@ -3340,7 +3340,7 @@ pre {
   position: fixed;
   top: 0;
   height: 100%;
-  width: 250px;
+  width: 260px;
   background-color: #fff;
   z-index: 880;
   left: 0;
@@ -3846,7 +3846,9 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li.menu-header {
   padding: 3px 15px;
   color: #a1a8ae;
-  font-size: 10px;
+  font-size: 11px;
+  text-align: start;
+  color: #4e4081;
   text-transform: uppercase;
   letter-spacing: 1.3px;
   font-weight: 600;
@@ -3858,7 +3860,7 @@ body.layout-3 .main-footer {
   position: relative;
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 60px;
   padding: 0 20px;
   width: 100%;
   letter-spacing: 0.3px;
@@ -3877,15 +3879,18 @@ body.layout-3 .main-footer {
 }
 .main-sidebar .sidebar-menu li a span {
   margin-top: 3px;
+  text-align: start;
   width: 100%;
 }
 .main-sidebar .sidebar-menu li a:hover {
-  background-color: #f8fafb;
+  background-color: #4e4081;
+  color: white;
 }
 .main-sidebar .sidebar-menu li.active a {
-  color: #4e4081;
-  font-weight: 600;
-  background-color: #f8fafb;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  background-color: #4e4081;
 }
 .main-sidebar .sidebar-menu li.active a.has-dropdown:after {
   transform: translate(0, -50%) rotate(90deg);

@@ -25,6 +25,11 @@ const routes = [
     component: () => import('@/views/Home.vue'),
     // beforeEnter:ProtectRoute
   },
+  {
+    path: '/absensi',
+    name: 'Absensi',
+    component: () => import('@/views/Absensi.vue')
+  },
   
 ]
 
