@@ -49,7 +49,7 @@
 
                     <p class="info-datetime"></p>
                     <p class="info-day"></p>
-                    <p class="info-f"></p>
+                    <p class="info-fulldate"></p>
                   </div>
                 </div>
               </div>
@@ -67,12 +67,6 @@
       </div>
   </div>
 </template>
-
-<style scoped>
-.btn-primary:active {
-  backgroud-color: #4E4081 !important;
-}
-</style>
 
 <script>
 // @ is an alias to /src
@@ -100,7 +94,7 @@ export default {
       
       let time = date.getHours() + ":" + date.getMinutes()
       let day = weekday[date.getDay()]
-      let fulldate = date.getDate() + "/" + date.getMonth() + "/" + date.getUTCFullYear()
+      let fulldate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getUTCFullYear()
       
       $('.info-datetime').html(time)
       $('.info-day').html(day)

@@ -25,6 +25,31 @@ const routes = [
     component: () => import('@/views/Home.vue'),
     // beforeEnter:ProtectRoute
   },
+  {
+    path: '/absensi',
+    name: 'Absensi',
+    component: () => import('@/views/Absensi.vue')
+  },
+  {
+    path: '/jadwal',
+    name: 'Jadwal',
+    component: () => import('@/views/Jadwal.vue')
+  },
+  {
+    path: '/mapel',
+    name: 'Mata Pelajaran',
+    component: () => import('@/views/Mapel.vue')
+  },
+  {
+    path: '/siswa',
+    name: 'Siswa',
+    component: () => import('@/views/Siswa.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('@/views/Settings.vue')
+  },
   
 ]
 
