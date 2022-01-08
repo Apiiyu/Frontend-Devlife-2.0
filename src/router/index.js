@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
+    name: 'Dashboard',
     component: () => import('@/views/Home.vue'),
     // beforeEnter:ProtectRoute
   },
@@ -54,7 +54,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  linkActiveClass: "active"
 })
 
 export default router

@@ -19,10 +19,10 @@
           </section>
           <ul class="sidebar-menu">
               <li class="menu-header my-2">Menu</li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <router-link to="/home"><i class="fas fa-fire text-left"></i><span>Dashboard</span></router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <router-link to="/absensi"><i class="fas fa-user-check"></i><span>Absensi</span></router-link>
               </li>
               <li class="nav-item">
@@ -41,3 +41,9 @@
         </aside>
       </div>
 </template>
+
+<style scoped>
+.main-sidebar {
+  position: fixed;
+}
+</style>

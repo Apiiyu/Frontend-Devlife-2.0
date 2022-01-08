@@ -13,20 +13,7 @@
 
     <!-- Section Content Begin -->
       <div class="main-content">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12 col-xxl-12">
-            <section class="section mt-3 h-50">
-              <div class="section-header">
-                <p class="title-header">Dashboard</p>
-
-                <div class="section-header-breadcrumb mt-4 position-absolute">
-                  <div class="breadcrumb-item active"><a href="#">Home</a></div>
-                  <div class="breadcrumb-item">Dashboard</div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
+        <Breadcrumb />
 
         <div class="row">
           <div class="col-lg-5 col-xl-5 col-xxl-5">
@@ -72,12 +59,14 @@
 // @ is an alias to /src
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 import $ from 'jquery'
 export default {
   name: 'Home',
   components: {
     Navbar,
     Sidebar,
+    Breadcrumb
   },
   data(){
     return{
