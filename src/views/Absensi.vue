@@ -1,3 +1,12 @@
+<style scoped>
+    .d-none{
+        display: none !important;
+    }
+    .show{
+        display: block !important;
+    }
+</style>
+
 <template>
   <div class="main-wrapper">
     <div class="navbar-bg"></div>
@@ -13,18 +22,26 @@
     <div class="main-content">
         <Breadcrumb />
         <div class="card-face p-4 ml-3 h-100">
-            <h4 class="text-left main-color">Face Detector</h4>
-            <div class="camera d-flex flex-column justify-content-center align-items-center" @click="setupCamera()">
-                <i class="fas fa-camera lg"></i>
-                <span class="txt mt-2">Buka Kamera untuk mengaktifkan fitur face Detector</span>
+            <form method="post" @submit.prevent="postDataAttendence">
+                <h4 class="text-left main-color">Face Detector</h4>
                 
-                <!-- Webcam -->
-                <video id="video" class="" autoplay muted></video>
-            </div>
+                <div class="camera d-flex flex-column justify-content-center align-items-center" @click="setupCamera()">
+                    <i class="fas fa-camera lg"></i>
+                    <span class="txt mt-2">Buka Kamera untuk mengaktifkan fitur face Detector</span>
+                    
+                </div>
 
-            <div class="d-flex justify-content-end mt-3">
-                <button class="btn-tampil">Ambil Photo</button>
-            </div>
+                <div class="camera camera-video d-none">
+                    <!-- Webcam -->
+                    <video id="video" style="width: 100%; height: 500px;" autoplay muted></video>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn-tampil" type="submit" @click="outputCapture()">Ambil Photo</button>
+                    <!-- Output Capture Photo -->
+                    <canvas id="canvas" class="d-none" style="width: 100%; height: 500px"></canvas>
+                </div>
+            </form>
         </div>
 
         <div class="d-flex bd-highlight mt-4 ml-3 align-items-center">
@@ -99,6 +116,8 @@
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import { createAlert } from '@/helper/sweetAlert.js'
+import { attendenceSiswa } from '@/services/attendence/attendence.service.js'
 import * as faceapi from 'face-api.js'
 import $ from 'jquery'
 window.$ = $
@@ -112,6 +131,12 @@ export default {
     },
     data: function() {
         return {
+            formData: {
+                nis: 1920118091,
+                long: null,
+                lat: null,
+                base64: null
+            },
             tabel: [
                 {
                     id: 1,
@@ -138,16 +163,92 @@ export default {
 
     },
     methods: {
-        setupCamera(){
+        setupCamera: async function (){
+            $('.camera').addClass('d-none')
+            $('.camera-video').addClass('show')
             Promise.all([
-                faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
+                // faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
                 faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
                 faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
                 faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models')
             ])
+            const video = document.getElementById('video')
+            
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
+                video.srcObject = stream
 
-            let stream = navigator.mediaDevices.getUserMedia({ video: true, audio: false})
-            $('#video').srcObject = stream
+            video.addEventListener('play', () => {
+                const canvas = faceapi.createCanvasFromMedia(video)
+                document.body.append(canvas)
+                const displaySize = { width: video.width, height: video.height }
+                faceapi.matchDimensions(canvas, displaySize)
+                setInterval(async () => {
+                    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+                    console.log(detections)
+                    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+                    faceapi.draw.drawDetections(canvas, resizedDetections)
+                    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+                    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+                }, 100)
+            })
+
+            const showPositionGeolocation = (position) => {
+                // Set data 
+                this.formData.lat = position.coords.latitude
+                this.formData.long = position.coords.longitude
+
+                createAlert('success', 'Success get your location', `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
+            }
+
+            const showErrorGeolocation = (error) => {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        createAlert('error', 'Error', "User denied the request for Geolocation.")
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        createAlert('error', 'Error', "Location information is unavailable.")
+                        break;
+                    case error.TIMEOUT:
+                        createAlert('error', 'Error', "The request to get user location timed out.")
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        createAlert('error', 'Error', "An unknown error occurred.")
+                        break;
+                }
+            }
+
+            // Get Location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPositionGeolocation, showErrorGeolocation);
+            } else { 
+                alert("Geolocation is not supported by this browser.")
+            }
+
+            
+        },
+        outputCapture(){
+            console.log('action ok')
+            const video = document.getElementById('video')
+            const canvas = document.getElementById('canvas')
+            
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+            console.log('url canvas', canvas.toDataURL('image/jpeg'))
+            this.formData.base64 = canvas.toDataURL('image/jpeg')
+        },
+        postDataAttendence(){
+            console.log('ini data absensi', this.formData)
+            attendenceSiswa(this.formData)
+                .then((response) => {
+                    if(response.data){
+                        createAlert('success', 'Success', 'Successfully fill attendance!')
+                    } else {
+                        createAlert('error', 'Error', 'Error fill attendance!')
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     }
 }
