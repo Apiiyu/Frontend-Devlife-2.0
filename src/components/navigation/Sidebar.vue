@@ -11,11 +11,6 @@
               <h4 class="mt-3 mb--2">Arif Gimnastiar</h4>
               <p>Siswa - XII</p>
             </div>
-            <div class="user-navigation">
-              <a href="#"><img src="@/assets/images/profile.svg" alt="profile" width="45"></a>
-              <a href="#"><img src="@/assets/images/email.svg" alt="email" width="45" class="mx-3"></a>
-              <a href="#"><img src="@/assets/images/logout.svg" alt="logout" width="45"></a>
-            </div>
           </section>
           <ul class="sidebar-menu">
               <li class="menu-header my-2">Menu</li>

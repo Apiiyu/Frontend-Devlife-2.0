@@ -48,7 +48,8 @@ export default new Vuex.Store({
 
             // Add the following line:
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-            window.location.href = "/#/home"
+            commit('auth_success', token, user)
+            resolve(response)
           })
           .catch((error) => {
             commit('auth_error')
