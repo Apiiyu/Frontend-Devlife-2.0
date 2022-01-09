@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import ProtectRoute from '@/utils/ProtectRoute'
+import ProtectRoute from '@/utils/ProtectRoute'
 
 Vue.use(VueRouter)
 
@@ -21,9 +21,9 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
+    name: 'Dashboard',
     component: () => import('@/views/Home.vue'),
-    // beforeEnter:ProtectRoute
+    beforeEnter:ProtectRoute
   },
   {
     path: '/absensi',
@@ -54,7 +54,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  linkActiveClass: "active"
 })
 
 export default router

@@ -26,6 +26,7 @@ import 'bootstrap/dist/js/bootstrap.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'chart.js/dist/Chart.js'
 import 'chart.js/dist/Chart.min.js'
+import 'face-api.js/dist/face-api.min.js'
 
 Vue.use(VueSweetalert2)
 Vue.use(BootstrapVue)
