@@ -284,6 +284,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 import Carousel from 'vue-owl-carousel'
 import Chart from 'chart.js'
 import $ from 'jquery'
+
 export default {
     name: 'Home',
     components: {

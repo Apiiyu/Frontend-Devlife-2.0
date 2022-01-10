@@ -65,7 +65,7 @@ export default {
         .then(() => {
             createAlert('success', 'Success', 'Success login into your account!')
             setTimeout(() => {
-                this.$router.push({ name: 'Home'})
+                this.$router.push({ name: 'Dashboard'})
             }, 1000)
         })
         .catch((error) => {

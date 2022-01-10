@@ -16,6 +16,7 @@
     "chart.js": "^2.9.4",
     "codemirror": "^5.64.0",
     "core-js": "^3.6.5",
+    "face-api.js": "^0.22.2",
     "jquery": "^3.6.0",
     "jquery-ui-dist": "^1.13.0",
     "node-sass": "^6.0.1",
