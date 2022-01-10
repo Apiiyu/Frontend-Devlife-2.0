@@ -15,22 +15,22 @@
           <ul class="sidebar-menu">
               <li class="menu-header my-2">Menu</li>
               <li class="nav-item">
-                <router-link to="/home"><i class="fas fa-fire text-left"></i><span>Dashboard</span></router-link>
-              </li>
-              <li class="nav-item active">
-                <router-link to="/absensi"><i class="fas fa-user-check"></i><span>Absensi</span></router-link>
+                <router-link to="/home" class="nav-link" exact><i class="fas fa-fire text-left"></i><span>Dashboard</span></router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/jadwal"><i class="far fa-clock"></i><span>Jadwal</span></router-link>
+                <router-link to="/absensi" class="nav-link"><i class="fas fa-user-check"></i><span>Absensi</span></router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/mapel"><i class="fas fa-graduation-cap"></i><span>Guru Mapel</span></router-link>
+                <router-link to="/jadwal" class="nav-link"><i class="far fa-clock"></i><span>Jadwal</span></router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/siswa"><i class="fas fa-user-friends"></i><span>Siswa</span></router-link>
+                <router-link to="/mapel" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Guru Mapel</span></router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/siswa" class="nav-link"><i class="fas fa-user-friends"></i><span>Siswa</span></router-link>
               </li>
               <li class="nav-item down">
-                <router-link to="/settings"><i class="fas fa-cog"></i><span>Settings</span></router-link>
+                <router-link to="/settings" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></router-link>
               </li>
               </ul>
         </aside>
@@ -40,5 +40,9 @@
 <style scoped>
 .main-sidebar {
   position: fixed;
+}
+.nav-link.exact-active.active {
+  background-color: #4e4081;
+  color: white;
 }
 </style>
