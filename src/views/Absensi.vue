@@ -1,12 +1,3 @@
-<style scoped>
-    .d-none{
-        display: none !important;
-    }
-    .show{
-        display: block !important;
-    }
-</style>
-
 <template>
   <div class="main-wrapper">
     <div class="navbar-bg"></div>
@@ -255,6 +246,12 @@ export default {
 </script>
 
 <style scoped>
+.d-none{
+    display: none !important;
+}
+.show{
+    display: block !important;
+}
  .main-color {
      color: #4E4081;
  }
