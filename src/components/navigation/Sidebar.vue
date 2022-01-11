@@ -15,7 +15,7 @@
           <ul class="sidebar-menu">
               <li class="menu-header my-2">Menu</li>
               <li class="nav-item">
-                <router-link :to="{ name: 'Dashboard' }" class="nav-link" exact><i class="fas fa-fire text-left"></i><span>Dashboard</span></router-link>
+                <router-link :to="{ name: 'Dashboard' }" class="nav-link"><i class="fas fa-fire text-left"></i><span>Dashboard</span></router-link>
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'Absensi' }" class="nav-link"><i class="fas fa-user-check"></i><span>Absensi</span></router-link>

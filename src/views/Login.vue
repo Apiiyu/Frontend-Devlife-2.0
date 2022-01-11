@@ -68,8 +68,8 @@ export default {
                 this.$router.push({ name: 'Dashboard'})
             }, 1000)
         })
-        .catch((error) => {
-            console.log('error', error)
+        .catch(() => {
+            createAlert('error', 'Failed', 'Failed login into your account!')
         })
     }
   }

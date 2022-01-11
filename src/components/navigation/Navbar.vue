@@ -14,15 +14,15 @@
               Histories
             </div>
             <div class="search-item">
-              <a href="#">How to hack NASA using CSS</a>
+              <a href="#">B.Indonesia</a>
               <a href="#" class="search-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="search-item">
-              <a href="#">Kodinger.com</a>
+              <a href="#">Attendence Matematika</a>
               <a href="#" class="search-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="search-item">
-              <a href="#">#Stisla</a>
+              <a href="#">Privacy</a>
               <a href="#" class="search-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="search-header">
@@ -79,7 +79,7 @@
             <div class="dropdown-list-content dropdown-list-message">
               <a href="#" class="dropdown-item dropdown-item-unread">
                 <div class="dropdown-item-avatar">
-                  <img alt="image" src="" class="rounded-circle">
+                  <img alt="image" src="@/assets/images/user3.jpg" class="rounded-sm">
                   <div class="is-online"></div>
                 </div>
                 <div class="dropdown-item-desc">
@@ -90,7 +90,7 @@
               </a>
               <a href="#" class="dropdown-item dropdown-item-unread">
                 <div class="dropdown-item-avatar">
-                  <img alt="image" src="" class="rounded-circle">
+                  <img alt="image" src="@/assets/images/user4.jpg" class="rounded-sm">
                 </div>
                 <div class="dropdown-item-desc">
                   <b>Dedik Sugiharto</b>
@@ -100,7 +100,7 @@
               </a>
               <a href="#" class="dropdown-item dropdown-item-unread">
                 <div class="dropdown-item-avatar">
-                  <img alt="image" src="" class="rounded-circle">
+                  <img alt="image" src="@/assets/images/user2.jpg" class="rounded-sm">
                   <div class="is-online"></div>
                 </div>
                 <div class="dropdown-item-desc">
@@ -148,7 +148,7 @@
                   <i class="fas fa-code"></i>
                 </div>
                 <div class="dropdown-item-desc">
-                  Template update is available now!
+                    <b>New Update for system</b>
                   <div class="time text-primary">2 Min Ago</div>
                 </div>
               </a>
@@ -166,7 +166,7 @@
                   <i class="fas fa-check"></i>
                 </div>
                 <div class="dropdown-item-desc">
-                  <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
+                  <b>Successfully fill attendence</b>
                   <div class="time">12 Hours Ago</div>
                 </div>
               </a>
@@ -175,7 +175,7 @@
                   <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="dropdown-item-desc">
-                  Low disk space. Let's clean it!
+                  Update your profile
                   <div class="time">17 Hours Ago</div>
                 </div>
               </a>
@@ -184,7 +184,7 @@
                   <i class="fas fa-bell"></i>
                 </div>
                 <div class="dropdown-item-desc">
-                  Welcome to Stisla template!
+                  Welcome to Devactor
                   <div class="time">Yesterday</div>
                 </div>
               </a>
@@ -195,8 +195,8 @@
           </div>
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-          <img alt="image" src="" class="rounded-circle mr-1">
-          <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+          <img alt="image" src="@/assets/images/user1.jpg" class="rounded-circle mr-1">
+          <div class="d-sm-none d-lg-inline-block">Hi, Arif Gimnastiar</div></a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-title">Logged in 5 min ago</div>
             <a href="features-profile.html" class="dropdown-item has-icon">
@@ -231,7 +231,7 @@ export default {
     logout() {
       this.$store.dispatch('logout')
       .then(() => {
-         window.location.href = "/"
+         this.$router.push({ name: 'Sign In'})
       })
     }
   }

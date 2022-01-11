@@ -78,14 +78,12 @@
         vertical-align: bottom;
     }
     canvas#barAbsensi {
-        width: auto !important;
         height: auto !important;
         margin-left: -120px;
     }
 
     @media screen and (max-width: 1368px) {
         canvas#barAbsensi {
-            width: auto !important;
             height: 150px !important;
             margin-left: -55px;
         }
@@ -95,7 +93,6 @@
     }
     @media screen and (max-width: 1220px) {
         canvas#barAbsensi {
-            width: auto !important;
             height: 120px !important;
             margin-left: -65px;
         }
@@ -131,7 +128,7 @@
                     <div class="bar-info">
                         <h1 class="title mt-5">Persentase Kehadiran</h1>
 
-                        <div class="detail-info d-flex mt-2">
+                        <div class="detail-info d-flex mt-5">
                             <div class="box-sakit">
                                 <p>Sakit</p>
                             </div>
@@ -303,8 +300,8 @@ export default {
                     datasets: [
                         {
                             borderWidth: 2,
-                            data: [95],
-                            backgroundColor: ['rgb(78, 64, 129)'],
+                            data: [95, 5],
+                            backgroundColor: ['rgb(78, 64, 129)', 'rgb(255,255,255)'],
                             borderColor: ['rgb(78, 64, 129)'],
                             borderSkipped: false
                         }

@@ -88,14 +88,18 @@ export default {
             // // hit api
             createAccount(data)
                 .then((result) => {
-                    createAlert('success', 'Success', 'Success login into your account!')
-                    setTimeout(() => {
-                        this.$router.push({ name: 'Sign In'})
-                    }, 1000)
-                    console.log('ini result', result)
+                    if(result){
+                        createAlert('success', 'Success', 'Success create new account!')
+                        setTimeout(() => {
+                            this.$router.push({ name: 'Sign In'})
+                        }, 1000)
+                        console.log('ini result', result)
+                    } else {
+                    createAlert('error', 'Failed', 'Failed create new account!')
+                    }
                 })
-                .catch((error) => {
-                    console.log(error)
+                .catch(() => {
+                    createAlert('error', 'Failed', 'Failed create new account!')
                 })
         }
     }

@@ -28,9 +28,16 @@
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
+
+  /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
   font-feature-settings: "liga";
 }
 
@@ -228,6 +235,10 @@ body {
     border-radius: 3px;
     background-color: var(--primary-color);
     color: var(--primary-color);
+  }
+
+  .login .content-login .form-login {
+    margin-top: -85px;
   }
 
   .login .content-login .form-login,
@@ -448,7 +459,7 @@ body {
     font-weight: bolder;
     color: var(--primary-color);
   }
-  
+
   .section-header .title-header {
     font-weight: 600;
     font-size: 15px;
@@ -463,10 +474,12 @@ body {
     cursor: pointer;
   }
 
-  .fas, .far, .fab, .fal {
+  .fas,
+  .far,
+  .fab,
+  .fal {
     font-size: 18px !important;
   }
-
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
