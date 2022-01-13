@@ -37,6 +37,12 @@
       </div>
 </template>
 
+<script>
+export default {
+  
+}
+</script>
+
 <style scoped>
 .main-sidebar {
   position: fixed;

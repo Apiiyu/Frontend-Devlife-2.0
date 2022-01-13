@@ -221,12 +221,6 @@
 <script>
 export default {
   name: 'Navbar',
-  data(){
-
-  },
-  mounted(){
-
-  },
   methods: {
     logout() {
       this.$store.dispatch('logout')
