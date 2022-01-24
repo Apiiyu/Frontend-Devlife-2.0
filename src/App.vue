@@ -5,6 +5,17 @@
 </template>
 
 <style>
+.card-table {
+    width: 99%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    height: auto;
+    margin-bottom: 100px;
+    background-color: white;
+}
+.main-color {
+    color: #4E4081;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

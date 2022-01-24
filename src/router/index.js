@@ -36,14 +36,14 @@ const routes = [
     component: () => import('@/views/Jadwal.vue')
   },
   {
-    path: '/mapel',
-    name: 'Mata Pelajaran',
+    path: '/guru',
+    name: 'Guru',
     component: () => import('@/views/Mapel.vue')
   },
   {
-    path: '/siswa',
-    name: 'Siswa',
-    component: () => import('@/views/Siswa.vue')
+    path: '/izin',
+    name: 'Izin',
+    component: () => import('@/views/Izin.vue')
   },
   {
     path: '/settings',

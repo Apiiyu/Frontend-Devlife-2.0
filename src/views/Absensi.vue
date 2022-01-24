@@ -252,22 +252,11 @@ export default {
 .show{
     display: block !important;
 }
- .main-color {
-     color: #4E4081;
- }
  .card-face {
      width: 99%;
      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
      border-radius: 10px;
      height: 590px;
-     background-color: white;
- }
- .card-table {
-     width: 99%;
-     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
-     border-radius: 10px;
-     height: auto;
-     margin-bottom: 100px;
      background-color: white;
  }
  .camera {
