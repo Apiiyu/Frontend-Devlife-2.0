@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import ProtectRoute from '@/utils/ProtectRoute'
+import ProtectRoute from '@/utils/ProtectRoute'
 
 Vue.use(VueRouter)
 
@@ -23,32 +23,37 @@ const routes = [
     path: '/home',
     name: 'Dashboard',
     component: () => import('@/views/Home.vue'),
-    // beforeEnter:ProtectRoute
+    beforeEnter:ProtectRoute
   },
   {
     path: '/absensi',
     name: 'Absensi',
-    component: () => import('@/views/Absensi.vue')
+    component: () => import('@/views/Absensi.vue'),
+    beforeEnter:ProtectRoute
   },
   {
     path: '/jadwal',
     name: 'Jadwal',
-    component: () => import('@/views/Jadwal.vue')
+    component: () => import('@/views/Jadwal.vue'),
+    beforeEnter:ProtectRoute
   },
   {
     path: '/mapel',
     name: 'Mata Pelajaran',
-    component: () => import('@/views/Mapel.vue')
+    component: () => import('@/views/Mapel.vue'),
+    beforeEnter:ProtectRoute
   },
   {
     path: '/siswa',
     name: 'Siswa',
-    component: () => import('@/views/Siswa.vue')
+    component: () => import('@/views/Siswa.vue'),
+    beforeEnter:ProtectRoute
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('@/views/Settings.vue')
+    component: () => import('@/views/Settings.vue'),
+    beforeEnter:ProtectRoute
   },
   
 ]

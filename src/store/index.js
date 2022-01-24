@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import axios from '@/config/axios.js'
 import { base_url } from '../config/base_url'
 import ApiRoute from '../services/api.route'
 
@@ -55,6 +55,23 @@ export default new Vuex.Store({
             commit('auth_error')
             localStorage.removeItem('token')
             reject(error)
+          })
+      })
+    },
+    logout({ commit }) {
+      return new Promise((resolve, reject) => {
+        axios({ url: base_url+ApiRoute.logout, method: 'POST' })
+        .then(resp => {
+            console.log("data logoout",resp)
+            commit('logout')
+            localStorage.removeItem('token')
+            localStorage.removeItem('user')
+            localStorage.removeItem('user')
+            delete axios.defaults.headers.common['Authorization']
+            resolve();
+          }).catch((e) => { 
+            console.log("error",e);
+            reject(e)
           })
       })
     }
