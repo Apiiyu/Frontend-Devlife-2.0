@@ -16,37 +16,37 @@
             <div class="form-register">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="number" id="nis" class="form-control" placeholder="Your NIS" autocomplete="off" v-model="nis">
+                <input type="number" id="nis" class="form-control" placeholder="NIS anda" autocomplete="off" v-model="nis">
                 <span class="material-icons">tag</span>
               </div>
 
               <div class="form-name">
-                <label for="name">Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Your Name" autocomplete="off" v-model="name">
+                <label for="name">Nama</label>
+                <input type="text" id="name" class="form-control" placeholder="Nama anda" autocomplete="off" v-model="name">
                 <span class="material-icons">person</span>
               </div>
 
               <div class="form-jurusan">
                 <label for="jurusan">Jurusan</label>
-                <input type="text" id="jurusan" class="form-control" placeholder="Your Jurusan" autocomplete="off" v-model="jurusan">
+                <input type="text" id="jurusan" class="form-control" placeholder="Jurusan anda" autocomplete="off" v-model="jurusan">
                 <span class="material-icons">person</span>
               </div>
 
               <div class="form-email">
                 <label for="email">Email</label>
-                <input type="text" id="email" class="form-control" placeholder="Your Name" autocomplete="off" v-model="email">
+                <input type="text" id="email" class="form-control" placeholder="Email anda" autocomplete="off" v-model="email">
                 <span class="material-icons">mail</span>
               </div>
 
               <div class="form-password">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="Your Password" autocomplete="off" v-model="password">
+                <label for="password">Kata Sandi</label>
+                <input type="password" id="password" class="form-control" placeholder="Kata sandi anda" autocomplete="off" v-model="password">
                 <span class="material-icons">https</span>
-                <p>Have account already?</p> <router-link :to="{ name: 'Sign In' }">Please go to Sign In</router-link> 
+                <p>Sudah punya akun?</p> <router-link :to="{ name: 'Sign In' }">Silakan Masuk</router-link> 
               </div>
 
                 <form action="" method="" @submit.prevent="create()" class="btn-submit">
-                    <button class="btn btn-primary btn-sm" type="submit">Sign Up</button>
+                    <button class="btn btn-primary btn-sm" type="submit">Daftar</button>
                 </form>
             </div>
           </form>

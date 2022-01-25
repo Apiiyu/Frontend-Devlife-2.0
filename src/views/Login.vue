@@ -13,7 +13,7 @@
           </div>
 
           <div class="main-content">
-            <h5>Dont have an account yet? <router-link :to="{ name: 'Sign Up' }">Create it here</router-link></h5>
+            <h5>Belum punya akun? <router-link :to="{ name: 'Sign Up' }">Buat di sini</router-link></h5>
             <hr class="decoration mb-4">
           </div>
 
@@ -21,19 +21,19 @@
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="text" name="nis" id="nis" class="form-control" placeholder="Your NIS" v-model="nis">
+                <input type="text" name="nis" id="nis" class="form-control" placeholder="NIS anda" v-model="nis">
                 <span class="material-icons">person</span>
               </div>
 
               <div class="form-password">
-                <label for="password">Password</label>
-                <input type="password"  name="password" id="password" class="form-control" placeholder="Your Password" v-model="password">
+                <label for="password">Kata Sandi</label>
+                <input type="password"  name="password" id="password" class="form-control" placeholder="Kata sandi anda" v-model="password">
                 <span class="material-icons">https</span>
-                <a href="forgotpassword">Forgot your password?</a>
+                <a href="forgotpassword">Lupa kata sandi Anda?</a>
               </div>
 
               <div class="btn-submit">
-                <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-sm">Masuk</button>
               </div>
             </div>
           </form>
