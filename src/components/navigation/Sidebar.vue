@@ -24,10 +24,10 @@
                 <router-link :to="{ name: 'Jadwal' }" class="nav-link"><i class="far fa-clock"></i><span>Jadwal</span></router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'Mata Pelajaran' }" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Guru Mapel</span></router-link>
+                <router-link :to="{ name: 'Guru' }" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Guru Mapel</span></router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'Siswa' }" class="nav-link"><i class="fas fa-user-friends"></i><span>Siswa</span></router-link>
+                <router-link :to="{ name: 'Izin' }" class="nav-link"><i class="fas fa-user-friends"></i><span>Izin/Sakit</span></router-link>
               </li>
               <li class="nav-item down">
                 <router-link :to="{ name: 'Settings' }" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></router-link>

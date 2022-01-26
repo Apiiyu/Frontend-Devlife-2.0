@@ -6,6 +6,9 @@ class ApiRoute {
     this.register = '/api/register'
     this.checkBearer = '/api/profile'
     this.attendence = '/api/attendence'
+
+    //---------- Api Guru
+    this.guru = '/api/guru'
   }
 } 
 
