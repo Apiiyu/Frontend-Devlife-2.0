@@ -123,7 +123,7 @@ export default {
     data: function() {
         return {
             formData: {
-                nis: 1920118091,
+                nis: localStorage.getItem('nis'),
                 long: null,
                 lat: null,
                 base64: null
@@ -154,40 +154,66 @@ export default {
 
     },
     methods: {
-        setupCamera: async function (){
-            $('.camera').addClass('d-none')
-            $('.camera-video').addClass('show')
-            Promise.all([
-                // faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
-                faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
-                faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
-                faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models')
-            ])
-            const video = document.getElementById('video')
-            
-            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
-                video.srcObject = stream
+        setupCamera: function (){
 
-            video.addEventListener('play', () => {
-                const canvas = faceapi.createCanvasFromMedia(video)
-                document.body.append(canvas)
-                const displaySize = { width: video.width, height: video.height }
-                faceapi.matchDimensions(canvas, displaySize)
-                setInterval(async () => {
-                    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-                    console.log(detections)
-                    const resizedDetections = faceapi.resizeResults(detections, displaySize)
-                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-                    faceapi.draw.drawDetections(canvas, resizedDetections)
-                    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-                    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-                }, 100)
-            })
+            const showPositionGeolocation = async (position) => {
+                let latitude = position.coords.latitude  
+                let longitude = position.coords.longitude 
+                // -6.941667372971486, 107.63881253127151
+        
+                console.log(parseFloat(latitude), 'ini latitude')
+                console.log(parseFloat(longitude), 'ini longitude')
+                // if (latitude > -6.9107711){
+                //     alert('condition oke')
+                // } else {
+                //     alert('condition false')
+                // }
 
-            const showPositionGeolocation = (position) => {
+                $('.camera').addClass('d-none')
+                    $('.camera-video').addClass('show')
+                    Promise.all([
+                        faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
+                        faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
+                        faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
+                        faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models')
+                    ])
+                    const video = document.getElementById('video')
+                    
+                    let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
+                        video.srcObject = stream
+
+                    video.addEventListener('play', () => {
+                        console.log('event ok')
+                        const canvas = faceapi.createCanvasFromMedia(video)
+                        document.body.append(canvas)
+                        const displaySize = { width: video.width, height: video.height }
+                        faceapi.matchDimensions(canvas, displaySize)
+                        setInterval(async () => {
+                            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+                            console.log(detections)
+                            const resizedDetections = faceapi.resizeResults(detections, displaySize)
+                            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+                            faceapi.draw.drawDetections(canvas, resizedDetections)
+                            faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+                            faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+                        }, 100)
+                    })
+
+                // if (latitude >= 0){
+                //     alert('position in school')
+                    
+                // } else {
+                //     createAlert('error', 'Failed', `Sorry, your position is not at school`)
+
+                //     await navigator.mediaDevices.getUserMedia({ video: false, audio: false})
+                //     .then((result) => {
+                //         console.log(result)
+                //     })
+                //     return false
+                // }
                 // Set data 
-                this.formData.lat = position.coords.latitude
-                this.formData.long = position.coords.longitude
+                this.formData.lat = latitude
+                this.formData.long = longitude
 
                 createAlert('success', 'Success get your location', `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
             }
@@ -252,22 +278,11 @@ export default {
 .show{
     display: block !important;
 }
- .main-color {
-     color: #4E4081;
- }
  .card-face {
      width: 99%;
      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
      border-radius: 10px;
      height: 590px;
-     background-color: white;
- }
- .card-table {
-     width: 99%;
-     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);
-     border-radius: 10px;
-     height: auto;
-     margin-bottom: 100px;
      background-color: white;
  }
  .camera {

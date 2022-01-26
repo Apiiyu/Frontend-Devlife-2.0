@@ -14,17 +14,20 @@ export default (to, from, next) => {
     })
     .then(resp => {
       console.log(resp)
+        localStorage.setItem('nis', resp.data.nis)
       next();
     })
     .catch(err => {
       console.log(err)
       localStorage.removeItem('user')
       localStorage.removeItem('token')
+      localStorage.removeItem('nis')
       next('/');
     })
   } else {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
+    localStorage.removeItem('nis')
     next('/');
   }
 }
