@@ -186,6 +186,15 @@ body {
     left: 0;
   }
 
+  .login .txt-forgot-password {
+    margin-top: 10px;
+  }
+
+  .register .txt-redirect-login {
+    margin-left: -22px;
+    margin-top: 3px;
+  }
+
   .login .content-login .img-app img,
   .register .content-register .img-app img {
     position: absolute;

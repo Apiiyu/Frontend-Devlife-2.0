@@ -42,7 +42,7 @@
                 <label for="password">Kata Sandi</label>
                 <input type="password" id="password" class="form-control" placeholder="Kata sandi anda" autocomplete="off" v-model="password">
                 <span class="material-icons">https</span>
-                <p>Sudah punya akun?</p> <router-link :to="{ name: 'Sign In' }">Silakan Masuk</router-link> 
+                <p>Sudah punya akun?</p> <router-link :to="{ name: 'Sign In' }" class="txt-redirect-login">Silakan Masuk</router-link> 
               </div>
 
                 <form action="" method="" @submit.prevent="create()" class="btn-submit">
