@@ -123,10 +123,12 @@ export default {
     data: function() {
         return {
             formData: {
-                nis: localStorage.getItem('nis'),
-                long: null,
-                lat: null,
-                base64: null
+                user_nis: localStorage.getItem('nis'),
+                longitude: null,
+                latitude: null,
+                base64: null,
+                jam_masuk: null,
+                jam_keluar: null
             },
             tabel: [
                 {
@@ -211,9 +213,10 @@ export default {
                 //     })
                 //     return false
                 // }
+                
                 // Set data 
-                this.formData.lat = latitude
-                this.formData.long = longitude
+                this.formData.latitude = latitude
+                this.formData.longitude = longitude
 
                 createAlert('success', 'Success get your location', `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
             }
@@ -254,6 +257,7 @@ export default {
             this.formData.base64 = canvas.toDataURL('image/jpeg')
         },
         postDataAttendence(){
+            this.formData.jam_masuk = '07:00:00'
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)
                 .then((response) => {

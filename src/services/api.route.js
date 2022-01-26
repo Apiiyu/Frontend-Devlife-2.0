@@ -9,6 +9,9 @@ class ApiRoute {
 
     //---------- Api Guru
     this.guru = '/api/guru'
+
+    //---------- Api Mata Pelajaran
+    this.matpel = '/api/matpel'
   }
 } 
 

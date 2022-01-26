@@ -21,7 +21,7 @@
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="text" name="nis" id="nis" class="form-control" placeholder="NIS anda" v-model="nis">
+                <input type="text" name="nis" id="nis" class="form-control" placeholder="NIS anda" autocomplete="off" v-model="nis">
                 <span class="material-icons">person</span>
               </div>
 

@@ -40,8 +40,9 @@ export default new Vuex.Store({
         })
           .then((response) => {
             console.log('Success login into your account', response)
-            const token = response.data.access_token
-            const user = response.data
+            const token = response.data.access_token.token
+            const user = response.data.data
+            console.log(user)
 
             localStorage.setItem('token', token)
             localStorage.setItem('user', JSON.stringify(user))

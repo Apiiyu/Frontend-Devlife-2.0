@@ -8,8 +8,9 @@
           <section class="profile">
             <div class="profile-picture">
               <img class="mt-3" src="@/assets/images/pp.png" alt="profile-picture" width="85">
-              <h4 class="mt-3 mb--2">Arif Gimnastiar</h4>
-              <p>Siswa - XII</p>
+              <p class="mt-2">{{ dataUser.nis }}</p>
+              <p>{{ dataUser.name }}</p>
+              <h6>{{ dataUser.jurusan }}</h6>
             </div>
           </section>
           <ul class="sidebar-menu">
@@ -38,9 +39,25 @@
 </template>
 
 <script>
+
 export default {
-  
+    name: 'Navbar',
+    data() {
+        return {
+            dataUser: []
+        }
+    },
+    mounted() {
+        this.getData()
+    },
+    methods: {
+        getData() {
+            this.dataUser = JSON.parse(localStorage.getItem('user'))
+            console.log('ini response user', this.dataUser)
+        }
+    }
 }
+
 </script>
 
 <style scoped>

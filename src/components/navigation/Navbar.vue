@@ -196,7 +196,7 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
           <img alt="image" src="@/assets/images/user1.jpg" class="rounded-circle mr-1">
-          <div class="d-sm-none d-lg-inline-block">Hi, Arif Gimnastiar</div></a>
+          <div class="d-sm-none d-lg-inline-block">Hi, {{ user.name}}</div></a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-title">Masuk 5 menit yang lalu</div>
             <a href="features-profile.html" class="dropdown-item has-icon">
@@ -220,15 +220,27 @@
 
 <script>
 export default {
-  name: 'Navbar',
-  methods: {
-    logout() {
-      this.$store.dispatch('logout')
-      .then(() => {
-         this.$router.push({ name: 'Sign In'})
-      })
+    name: 'Navbar',
+    data(){
+        return {
+            user: []
+        }
+    },
+    mounted() {
+        this.getData()
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('logout')
+                .then(() => {
+                    this.$router.push({ name: 'Sign In'})
+                })
+        },
+        getData() {
+            this.user = JSON.parse(localStorage.getItem('user'))
+            console.log('ini response user', this.user)
+        }
     }
-  }
 }
 </script>
 

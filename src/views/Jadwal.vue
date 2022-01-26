@@ -21,125 +21,43 @@
             </ul>
         </div>
 
-        <div class="row mt-4">
-          <div class="col">
-            <div class="d-flex align-items-center card-mapel">
-              <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
-                <img src="@/assets/images/icon-math.svg" alt="Matematika">
-              </div>
-
-              <div class="line mx-3"></div>
-
-              <div class="content-mapel">
-                <h4>Matematika</h4>
-                <div class="info-mapel">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <img src="@/assets/images/schedule.svg" alt="clock" width="20">
-                      <span class="ml-2">07.00 - 08.30</span>
+        <div class="row mt-1">
+            <div class="col-6 mt-3" v-for="(item, index) in dataMapel" :key="index">
+                <div class="d-flex align-items-center card-mapel">
+                    <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
+                        <img src="@/assets/images/icon-math.svg" alt="Matematika">
                     </div>
-                    <div class="col-md-6">
-                      <img class="img-center" src="@/assets/images/person.svg" alt="person" width="18">
-                      <span class="ml-2 pt-2">Moch. Ihsan, M.Pd.</span>
+
+                    <div class="line mx-3"></div>
+
+                    <div class="content-mapel">
+                        <h4>{{ item.nama_matpel }}</h4>
+                        <div class="info-mapel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="@/assets/images/schedule.svg" alt="clock" width="20">
+                                    <span class="ml-2">{{ item.jam_matpel }}</span>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <img class="img-center" src="@/assets/images/person.svg" alt="person" width="18">
+                                    <span class="ml-2 pt-2">{{ item.guru.nama_guru }}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="d-flex align-items-center card-mapel">
-              <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
-                <img src="@/assets/images/icon-english.svg" alt="English">
-              </div>
-
-              <div class="line mx-3"></div>
-
-              <div class="content-mapel">
-                <h4>Bahasa Inggris</h4>
-                <div class="info-mapel">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <img src="@/assets/images/schedule.svg" alt="clock" width="20">
-                      <span class="ml-2">08.30 - 09.30</span>
-                    </div>
-                    <div class="col-md-6">
-                      <img class="img-center" src="@/assets/images/person.svg" alt="person" width="18">
-                      <span class="ml-2 pt-2">Neneng Wahdatul F, S.Pd.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </div>        
         </div>
-
-        <div class="row mt-3">
-          <div class="col">
-            <div class="d-flex align-items-center card-mapel">
-              <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
-                <img src="@/assets/images/icon-agama.svg" alt="Agama">
-              </div>
-
-              <div class="line mx-3"></div>
-
-              <div class="content-mapel">
-                <h4>Agama</h4>
-                <div class="info-mapel">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <img src="@/assets/images/schedule.svg" alt="clock" width="20">
-                      <span class="ml-2">09.30 - 10.30</span>
-                    </div>
-                    <div class="col-md-6">
-                      <img class="img-center" src="@/assets/images/person.svg" alt="person" width="18">
-                      <span class="ml-2 pt-2">Drs. H. Asep Mulyana, M.Ag.</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="d-flex align-items-center card-mapel">
-              <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
-                <img src="@/assets/images/icon-jepang.svg" alt="Bahasa Jepang">
-              </div>
-
-              <div class="line mx-3"></div>
-
-              <div class="content-mapel">
-                <h4>Bahasa Jepang</h4>
-                <div class="info-mapel">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <img src="@/assets/images/schedule.svg" alt="clock" width="20">
-                      <span class="ml-2">11.00 - 13.30</span>
-                    </div>
-                    <div class="col-md-6">
-                      <img class="img-center" src="@/assets/images/person.svg" alt="person" width="18">
-                      <span class="ml-2 pt-2">Rizky Amallia Eshi, S.Pd</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-
       </div>
-
-
-
-   </div>
+  </div>
 </template>
 
 <script>
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import { getDataMapel } from '@/services/mapel/mapel.service.js'
 
 export default {
     name: 'Jadwal',
@@ -147,6 +65,26 @@ export default {
         Navbar,
         Sidebar,
         Breadcrumb
+    },
+    data(){
+        return {
+            dataMapel: []
+        }
+    },
+    mounted() {
+        this.getData()
+    },
+    methods: {
+        getData() {
+            getDataMapel()
+            .then((result) => {
+                this.dataMapel = (result.data).sort((a, b) => {return b.updatedAt - a.updatedAt})
+                console.log('ini response api', this.dataMapel[0])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
     }
 }
 </script>
