@@ -22,39 +22,39 @@
               <a href="#" class="search-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="search-item">
-              <a href="#">Privasi</a>
+              <a href="#">Total Izin</a>
               <a href="#" class="search-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="search-header">
-              Hasil
+              Mapel Kejuruan
             </div>
             <div class="search-item">
               <a href="#">
-                <img class="mr-3 rounded" width="30" src="" alt="product">
-                oPhone S9 Limited Edition
+                <img class="mr-3 rounded" width="30" src="">
+                Teknik Komputer dan Informatika
               </a>
             </div>
             <div class="search-item">
               <a href="#">
-                <img class="mr-3 rounded" width="30" src="" alt="product">
-                Drone X2 New Gen-7
+                <img class="mr-3 rounded" width="30" src="">
+                Elektronika
               </a>
             </div>
             <div class="search-item">
               <a href="#">
-                <img class="mr-3 rounded" width="30" src="" alt="product">
-                Headphone Blitz
+                <img class="mr-3 rounded" width="30" src="">
+                Teknik Ketenagalistrikan
               </a>
             </div>
             <div class="search-header">
-              Projek
+              Projek Kejuruan
             </div>
             <div class="search-item">
               <a href="#">
                 <div class="search-icon bg-danger text-white mr-3">
                   <i class="fas fa-code"></i>
                 </div>
-                Stisla Admin Template
+                Pengembangan Perangkat Lunak dan Gim
               </a>
             </div>
             <div class="search-item">
@@ -62,7 +62,7 @@
                 <div class="search-icon bg-primary text-white mr-3">
                   <i class="fas fa-laptop"></i>
                 </div>
-                Buat Desain Beranda baru
+                Desain Komunikasi Visual
               </a>
             </div>
           </div>

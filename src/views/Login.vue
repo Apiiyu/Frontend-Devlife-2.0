@@ -29,7 +29,7 @@
                 <label for="password">Kata Sandi</label>
                 <input type="password"  name="password" id="password" class="form-control" placeholder="Kata sandi anda" v-model="password">
                 <span class="material-icons">https</span>
-                <a href="forgotpassword">Lupa kata sandi Anda?</a>
+                <a href="forgotpassword" class="txt-forgot-password">Lupa kata sandi Anda?</a>
               </div>
 
               <div class="btn-submit">
