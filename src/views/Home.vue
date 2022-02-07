@@ -81,6 +81,14 @@
         height: auto !important;
         margin-left: -120px;
     }
+    .btn-plg {
+        width: 275px;
+        height: 50px;
+        margin-top: -20px;
+    }
+    .card .card-date {
+        padding: 45px;
+    }
 
     @media screen and (max-width: 1368px) {
         canvas#barAbsensi {
@@ -163,7 +171,7 @@
 
           <div class="col-lg-3 col-xl-3 col-xxl-3">
             <div class="card">
-              <div class="card-body">
+              <div class="card-body card-date">
                 <div class="date-time">
                   <div class="text-center">
                     <h3 class="title-hours">
@@ -177,6 +185,8 @@
                 </div>
               </div>
             </div>
+            
+            <button class="btn btn-primary btn-plg">Absen Pulang</button>
           </div>
 
           <div class="col-lg-3 col-xl-3 col-xxl-3">
