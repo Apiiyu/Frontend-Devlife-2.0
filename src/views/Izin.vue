@@ -15,29 +15,31 @@
     <div class="main-content">  
       <Breadcrumb/>
 
-      <div class="card-table ml-3 p-4">
-        <span class="d-block text-left main-color mb-1">Keterangan</span>
-        <div class="input-group mb-3">
-          <select @change="selectKet($event)" class="custom-select" id="inputGroupSelect02">
-            <option selected>Pilih keterangan...</option>
-            <option value="Izin">Izin</option>
-            <option value="Sakit">Sakit</option>
-          </select>
-        </div>
-        <span class="d-block text-left main-color mb-1">Lampiran</span>
-        <div class="input-group mb-3">
-          <div class="custom-file">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-          </div>
-        </div>
-        <span class="d-block text-left main-color mb-1">Deskripsi</span>
-        <textarea class="deskripsi" name="deskripsi" cols="30" rows="10"></textarea>
-        <div class="d-flex justify-content-end mt-3">
-          <button class="btn-tampil">Submit</button>
-        </div>
-      </div>
-
+        <form method="post" @submit.prevent="postData()">
+            <div class="card-table ml-3 p-4">
+                <span class="d-block text-left main-color mb-1">Keterangan</span>
+                <div class="input-group mb-3">
+                <select @change="selectKet($event)" class="custom-select" id="inputGroupSelect02" v-model="formData.keterangan">
+                    <option selected>Pilih keterangan...</option>
+                    <option value="Izin">Izin</option>
+                    <option value="Sakit">Sakit</option>
+                </select>
+                </div>
+                <span class="d-block text-left main-color mb-1">Lampiran</span>
+                <div class="input-group mb-3">
+                <div class="custom-file">
+                    <label v-if="namaFile" class="custom-file-label" for="inputGroupFile01">{{ this.nama_file }}</label>
+                    <label v-else class="custom-file-label" for="inputGroupFile01">Choose File</label>
+                    <input type="file" ref="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" v-on:change="handleUploadFile()">
+                </div>
+                </div>
+                <span class="d-block text-left main-color mb-1">Deskripsi</span>
+                <textarea class="deskripsi" name="deskripsi" cols="30" rows="10" v-model="formData.deskripsi"></textarea>
+                <div class="d-flex justify-content-end mt-3">
+                <button class="btn-tampil" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
     </div>
 
    </div>
@@ -47,6 +49,7 @@
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import { postDataPermission } from '@/services/permission/permission.service.js'
 
 export default {
     name: 'Settings',
@@ -55,10 +58,39 @@ export default {
         Sidebar,
         Breadcrumb
     },
+    data(){
+        return {
+            formData: {
+                user_nis: localStorage.getItem('nis'),
+                lampiran: null,
+                deskripsi: '',
+                keterangan: ''
+            },
+            file: '',
+            name_file: null
+        }
+    },
     methods: {
-      selectKet(event){
-        console.log(event.target.value);
-      }
+        selectKet(event){
+            console.log(event.target.value);
+        },
+        handleUploadFile(){
+            this.file = this.$refs.file
+            this.name_file = this.$refs.file.files[0].name
+            this.formData.lampiran = this.$refs.file.files[0].name
+            console.log('file', this.file);
+            console.log('nama_file', this.name_file);
+        },
+        postData(){
+            console.log('ini data form', this.formData)
+            postDataPermission(this.formData)
+            .then((result) => {
+                console.log('ini result', result)
+            }) 
+            .catch((error) => {
+                console.log(error)
+            })
+        }
     }
 }
 </script>

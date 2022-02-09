@@ -12,6 +12,9 @@ class ApiRoute {
 
     //---------- Api Mata Pelajaran
     this.matpel = '/api/matpel'
+
+    //---------- Api Permission
+    this.permission = '/api/permission'
   }
 } 
 
