@@ -147,12 +147,13 @@ export default {
         return {
             formData: {
                 user_nis: localStorage.getItem('nis'),
-                longitude: null,
-                latitude: null,
+                lokasi: null,
                 base64: null,
                 jam_masuk: null,
                 jam_keluar: null
             },
+            latitude: null,
+            longitude: null,
             dataAbsensi: [],
             fields: [
                 {
@@ -189,6 +190,34 @@ export default {
     methods: {
         timeFormatDate(date){
             return timeFormatComplete(date)
+        },
+        convertGeocode(latitude, longitude){
+            $.ajax({
+                url: "https://nominatim.openstreetmap.org/reverse",
+                data: {
+                    lat: latitude,
+                    lon: longitude,
+                    format: "json"
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(
+                    'User-Agent',
+                    'ID of your APP/service/website/etc. v0.1'
+                    )
+                },
+                dataType: "json",
+                type: "GET",
+                async: true,
+                crossDomain: true
+            })
+                .then((response) => {
+                    console.log(response.address, 'ini address')
+                    this.formData.lokasi = response.address.amenity
+                    console.log('amenity', this.formData.lokasi)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
         getDataAttendence() {
             getData()
@@ -263,8 +292,9 @@ export default {
                 // }
                 
                 // Set data 
-                this.formData.latitude = latitude
-                this.formData.longitude = longitude
+                this.latitude = latitude
+                this.longitude = longitude
+                this.convertGeocode(latitude, longitude)
 
                 createAlert('success', 'Success get your location', `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
             }
@@ -305,8 +335,9 @@ export default {
             this.formData.base64 = canvas.toDataURL('image/jpeg')
         },
         postDataAttendence(){
-            
-            this.formData.jam_masuk = '07:00:00'
+            let today = new Date()
+            let currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+            this.formData.jam_masuk = currentTime
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)
                 .then((response) => {
