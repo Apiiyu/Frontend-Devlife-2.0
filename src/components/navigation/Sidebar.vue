@@ -6,10 +6,10 @@
             <h4 class="d-inline-block ml-3 mt-4">Devector</h4>
           </div>
           <section class="profile">
-            <div class="profile-picture">
+            <div class="profile-picture mb-3">
               <img class="mt-3" src="@/assets/images/pp.png" alt="profile-picture" width="85">
-              <p class="mt-2">{{ dataUser.nis }}</p>
-              <p>{{ dataUser.name }}</p>
+              <h6 class="mt-2">{{ dataUser.nis }}</h6>
+              <h4>{{ dataUser.name }}</h4>
               <h6>{{ dataUser.jurusan }}</h6>
             </div>
           </section>
@@ -61,6 +61,10 @@ export default {
 </script>
 
 <style scoped>
+h6 {
+  font-size: 15px;
+  font-weight: 500 !important;
+}
 .main-sidebar {
   position: fixed;
 }

@@ -79,24 +79,42 @@
                 Export Laporan
             </button>
             </div>
-            <table class="table mt-3">
-                <thead>
-                    <tr>
-                    <th scope="col" width="20">No</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Jam Masuk</th>
-                    <th scope="col">Jam Keluar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(tbl, index) in tabel" :key="tbl.id" :index="index">
-                        <th scope="row">{{index + 1}}</th>
-                        <td>{{ tbl.tgl }}</td>
-                        <td>{{ tbl.jm }}</td>
-                        <td>{{ tbl.jk }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <b-table
+                table-class="table table-centered w-100"
+                thead-tr-class="none"
+                :items="tableData"
+                :fields="fields"
+                responsive="sm"
+                :per-page="perPage"
+                :current-page="currentPage"
+                :sort-by.sync="sortBy"
+                :sort-desc.sync="sortDesc"
+                :filter="filter"
+                :filter-included-fields="filterOn"
+                @filtered="onFiltered"
+                >
+                <template v-slot:cell(no)="data">
+                    <div class="d-inline-flex align-items-center">
+                    <b> {{ currentPageDetail > 1 ? currentPageDetail * perPage - (perPage-1) + data.index : data.index + 1 }}</b>
+                    </div>
+                </template>
+                <template v-slot:cell(actions)="data">
+                    <button type="button" class="link-actions" @click="detailProject(data.item)" style="border:0px; background:transparent;">
+                    Details
+                    </button>
+                </template>
+                </b-table>
+                <div class="row">
+                <div class="col">
+                    <div class="dataTables_paginate paging_simple_numbers float-right">
+                    <ul class="pagination">
+                        <b-pagination v-model="currentPageDetail" :total-rows="totalData" :per-page="perPage" prev-text="Prev" next-text="Next"></b-pagination>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -108,7 +126,7 @@ import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { createAlert } from '@/helper/sweetAlert.js'
-import { attendenceSiswa } from '@/services/attendence/attendence.service.js'
+import { attendenceSiswa,getData } from '@/services/attendence/attendence.service.js'
 import * as faceapi from 'face-api.js'
 import $ from 'jquery'
 window.$ = $
@@ -130,32 +148,48 @@ export default {
                 jam_masuk: null,
                 jam_keluar: null
             },
-            tabel: [
+            dataAbsensi: [],
+            fields: [
                 {
-                    id: 1,
-                    tgl: 'Senin, 03-01-2022',
-                    jm: '06:30:00',
-                    jk: '16:30:40'
+                    sortable: true,
+                    key: 'no',
+                    label: 'No',
                 },
                 {
-                    id: 2,
-                    tgl: 'Selasa, 04-01-2022',
-                    jm: '06:30:10',
-                    jk: '16:00:40'
+                    key: 'created_at',
+                    label: 'Tanggal Masuk',
+                    sortable: true,
                 },
                 {
-                    id: 3,
-                    tgl: 'Rabu, 05-01-2022',
-                    jm: '06:30:10',
-                    jk: '16:30:40'
+                    key: 'jam_masuk',
+                    label: 'Jam Masuk',
+                    sortable: true,
                 },
-            ]
+                {
+                    key: 'jam_keluar',
+                    label: 'Jam Keluar',
+                    sortable: true,
+                },
+            ],
         }
     },
     mounted(){
 
     },
     methods: {
+        getDataAttendence() {
+            getData()
+            .then((response) => {
+                    if(response.data){
+                        console.log('success');
+                    } else {
+                        console.log('error');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
         setupCamera: function (){
 
             const showPositionGeolocation = async (position) => {
