@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-unused-vars */
 <template>
   <div class="main-wrapper">
     <div class="navbar-bg"></div>
@@ -83,7 +84,7 @@
                 <b-table
                 table-class="table table-centered w-100"
                 thead-tr-class="none"
-                :items="tableData"
+                :items="dataAbsensi"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -99,7 +100,10 @@
                     <b> {{ currentPageDetail > 1 ? currentPageDetail * perPage - (perPage-1) + data.index : data.index + 1 }}</b>
                     </div>
                 </template>
-                <template v-slot:cell(actions)="data">
+                <template v-slot:cell(created_at)="data">
+                    {{timeFormatDate(data.item.created_at)}}
+                </template>
+                <template v-slot:cell(action)="data">
                     <button type="button" class="link-actions" @click="detailProject(data.item)" style="border:0px; background:transparent;">
                     Details
                     </button>
@@ -126,7 +130,8 @@ import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { createAlert } from '@/helper/sweetAlert.js'
-import { attendenceSiswa,getData } from '@/services/attendence/attendence.service.js'
+import { attendenceSiswa, getData } from '@/services/attendence/attendence.service.js'
+import { timeFormatComplete } from '@/helper/dateFormat'
 import * as faceapi from 'face-api.js'
 import $ from 'jquery'
 window.$ = $
@@ -170,18 +175,27 @@ export default {
                     label: 'Jam Keluar',
                     sortable: true,
                 },
+                {
+                    key: 'action',
+                    label: 'Action',
+                    sortable: false,
+                }
             ],
         }
     },
     mounted(){
-
+        this.getDataAttendence()
     },
     methods: {
+        timeFormatDate(date){
+            return timeFormatComplete(date)
+        },
         getDataAttendence() {
             getData()
             .then((response) => {
                     if(response.data){
-                        console.log('success');
+                        this.dataAbsensi = (response.data).sort((a, b) => {return b.updatedAt - a.updatedAt});
+                        console.log(this.dataAbsensi , 'success');
                     } else {
                         console.log('error');
                     }
@@ -291,6 +305,7 @@ export default {
             this.formData.base64 = canvas.toDataURL('image/jpeg')
         },
         postDataAttendence(){
+            
             this.formData.jam_masuk = '07:00:00'
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)

@@ -5,7 +5,7 @@ import { base_url } from "../../config/base_url";
 export async function getData() {
     return axios.get(base_url+ApiRoute.getDataAttendence)
     .then((response) => {
-        return console.log(response.data); 
+        return response.data 
     })
     .catch((error) => {
         console.log(error)
