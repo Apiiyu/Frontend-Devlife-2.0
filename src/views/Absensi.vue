@@ -100,6 +100,16 @@
                     <b> {{ currentPageDetail > 1 ? currentPageDetail * perPage - (perPage-1) + data.index : data.index + 1 }}</b>
                     </div>
                 </template>
+                <template v-slot:cell(jam_masuk)="data">
+                    <div class="jam-masuk">
+                        <span v-if="data.item.keterangan == 'Tepat Waktu'" class="text-success">{{ data.item.jam_masuk }}</span>
+                        <span v-else class="text-danger">{{ data.item.jam_masuk }}</span>
+                    </div>
+                </template>
+                <template v-slot:cell(keterangan)="data">
+                    <span v-if="data.item.keterangan == 'Tepat Waktu'" class="text-success">{{ data.item.keterangan }}</span>
+                        <span v-else class="text-danger">{{ data.item.keterangan }}</span>
+                </template>
                 <template v-slot:cell(created_at)="data">
                     {{timeFormatDate(data.item.created_at)}}
                 </template>
@@ -150,6 +160,7 @@ export default {
                 lokasi: null,
                 base64: null,
                 jam_masuk: null,
+                keterangan: null,
                 jam_keluar: null
             },
             latitude: null,
@@ -169,6 +180,11 @@ export default {
                 {
                     key: 'jam_masuk',
                     label: 'Jam Masuk',
+                    sortable: true,
+                },
+                {
+                    key: 'keterangan',
+                    label: 'Keterangan',
                     sortable: true,
                 },
                 {
@@ -224,7 +240,17 @@ export default {
             .then((response) => {
                     if(response.data){
                         this.dataAbsensi = (response.data).sort((a, b) => {return b.updatedAt - a.updatedAt});
-                        console.log(this.dataAbsensi , 'success');
+                        // let data = this.dataAbsensi.forEach((item, index) => {
+                        //     item.no = index + 1
+                        //     let jamMasuk = parseInt(item.jam_masuk)
+                            
+                        //     if(jamMasuk >= 6 && jamMasuk <= 7){
+                        //         $('.jam-masuk').css('color', '#00ff00 !important')
+                        //     }else{
+                        //         $('.jam-masuk').text('color', '#ff0000 !important')
+                        //     }
+                        // })
+                        // console.log(data , 'success');
                     } else {
                         console.log('error');
                     }
@@ -338,6 +364,18 @@ export default {
             let today = new Date()
             let currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
             this.formData.jam_masuk = currentTime
+            
+            if (today.getHours() >= 6 && today.getHours() <= 7){
+                this.formData.keterangan = 'Tepat Waktu'
+            } else {
+                this.formData.keterangan = 'Terlambat'
+            }
+
+            if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
+                createAlert('error', 'Error', 'Your location is not at school')
+                return false
+            }
+
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)
                 .then((response) => {

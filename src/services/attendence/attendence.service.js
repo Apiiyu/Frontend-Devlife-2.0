@@ -21,3 +21,14 @@ export async function attendenceSiswa(data){
             console.log(error)
         })
 }
+
+export async function updateAttendence(data){
+    // return console.log(data, 'ini data service')
+    return axios.patch(base_url+ApiRoute.updateAttendence+`/${data.nis}/${data.created_at}/${data.current_time}`)
+        .then((response) => {
+            return response.data
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}

@@ -186,7 +186,7 @@
               </div>
             </div>
             
-            <button class="btn btn-primary btn-plg">Absen Pulang</button>
+            <button class="btn btn-plg disabled btn-secondary" id="absenPulang" @click="attandancePulang()">Absen Pulang</button>
           </div>
 
           <div class="col-lg-3 col-xl-3 col-xxl-3">
@@ -288,6 +288,8 @@
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import { updateAttendence } from '@/services/attendence/attendence.service'
+import { createAlert } from '@/helper/sweetAlert'
 import Carousel from 'vue-owl-carousel'
 import Chart from 'chart.js'
 import $ from 'jquery'
@@ -302,6 +304,11 @@ export default {
     },
     data(){
         return{
+            dataPulang: {
+                nis: localStorage.getItem('nis'),
+                created_at: null,
+                current_time: null
+            },
             value: '',
             chart_content: {
                 type: 'doughnut',
@@ -332,24 +339,75 @@ export default {
     mounted(){
         this.getDateTime()
         this.setupChart()
+        this.absenPulang()
     },
     methods: {
-        getDateTime(){
-        let date = new Date()
-        const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-        
-        let time = date.getHours() + ":" + date.getMinutes()
-        let day = weekday[date.getDay()]
-        let fulldate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getUTCFullYear()
-        
-        $('.info-datetime').html(time)
-        $('.info-day').html(day)
-        $('.info-fulldate').html(fulldate)
+        absenPulang(){
+            let today = new Date()
+            let hours = today.getHours()
+            console.log(today)
+
+            if (hours >= 14 && hours <= 19) {
+                $('.btn-plg').addClass('btn-primary')
+                $('.btn-plg').removeClass('btn-secondary')
+                $('.btn-plg').removeClass('disabled')
+            } else {
+                $('.btn-plg').addClass('btn-secondary')
+                $('.btn-plg').removeClass('btn-primary')
+                $('.btn-plg').addClass('disabled')
+            }
         },
-        dateDisabled(ymd, date){
-        const weekday = date.getDay()
-        // const day = date.getDate()
-        return weekday === 0 || weekday === 6 
+
+        attandancePulang(){
+            let today = new Date()
+            let years = today.getFullYear()
+            let months = today.getMonth() + 1
+            let days = today.getDate()
+
+            if (months < 10) {
+                months = '0' + months
+            }
+
+            this.dataPulang.created_at = years + '-' + months + '-' + days
+
+            let hours = today.getHours()
+            let minutes = today.getMinutes()
+            let second = today.getSeconds()
+            this.dataPulang.current_time = hours + ':' + minutes + ':' + second
+            if (hours >= 14 && minutes >= 0) {
+                updateAttendence(this.dataPulang)
+                    .then((response) => {
+                        if (response.data){
+                            createAlert('success', 'Success', 'Successfully Absen Pulang')
+                            $('.btn-plg').addClass('btn-secondary')
+                            $('.btn-plg').removeClass('btn-primary')
+                            $('.btn-plg').addClass('disabled')
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            } else {
+                return false
+            }
+        },
+
+        getDateTime(){
+            let date = new Date()
+            const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+            
+            let time = date.getHours() + ":" + date.getMinutes()
+            let day = weekday[date.getDay()]
+            let fulldate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getUTCFullYear()
+            
+            $('.info-datetime').html(time)
+            $('.info-day').html(day)
+            $('.info-fulldate').html(fulldate)
+            },
+            dateDisabled(ymd, date){
+            const weekday = date.getDay()
+            // const day = date.getDate()
+            return weekday === 0 || weekday === 6 
         },
         setupChart(){
             const chart = document.getElementById('barAbsensi').getContext('2d')
