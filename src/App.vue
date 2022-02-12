@@ -1,10 +1,19 @@
 <template>
   <div id="app">
-    <router-view/>
+    <vue-page-transition name="overlay-right">
+      <router-view/>
+    </vue-page-transition>
   </div>
 </template>
 
 <style>
+.overlay-right {
+  z-index: 9999;
+  overflow: hidden;
+  background: url(assets/images/banner/erp/banner-bg.jpg) !important;
+  /* background: #a145fe !important; */
+  background-size: cover;
+}
 .card-table {
     width: 99%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.08);

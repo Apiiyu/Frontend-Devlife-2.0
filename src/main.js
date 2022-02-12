@@ -4,6 +4,7 @@ import router from './router'
 import Vuesax from 'vuesax'
 import store from './store'
 import VueSweetalert2 from 'vue-sweetalert2';
+import VuePageTransition from 'vue-page-transition'
 
 // Css
 import 'vuesax/dist/vuesax.css'
@@ -18,6 +19,10 @@ import '@/assets/css/style.css'
 import '@/assets/css/components.css'
 import '@/assets/css/custom.css'
 
+import '@/assets/css/lpcss/style.css'
+import '@/assets/css/lpcss/animate.css'
+import '@/assets/css/lpcss/icofont.min.css'
+
 import 'jquery-ui-dist/jquery-ui';
 import 'jquery-ui-dist/jquery-ui.css';
 
@@ -29,6 +34,7 @@ import 'chart.js/dist/Chart.min.js'
 import 'face-api.js/dist/face-api.min.js'
 
 Vue.use(VueSweetalert2)
+Vue.use(VuePageTransition)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(Vuesax)

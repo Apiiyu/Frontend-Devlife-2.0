@@ -7,7 +7,8 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        redirect: '/signin',
+        name: 'Landing Page',
+        component: () => import('@/views/Landingpage.vue')
     },
     {
         path: '/signin',
@@ -18,6 +19,16 @@ const routes = [
         path: '/signup',
         name: 'Sign Up',
         component: () => import('@/views/Register.vue')
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: () => import('@/views/About.vue')
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        component: () => import('@/views/Contact.vue')
     },
     {
         path: '/home',
@@ -43,13 +54,6 @@ const routes = [
         name: 'Mata Pelajaran',
         component: () => import('@/views/Mapel.vue'),
         beforeEnter:ProtectRoute
-    },
-    {
-        path: '/siswa',
-        name: 'Siswa',
-        component: () => import('@/views/Siswa.vue'),
-        beforeEnter:ProtectRoute
-
     },
     {    
         path: '/guru',
