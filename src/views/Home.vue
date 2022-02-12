@@ -347,7 +347,7 @@ export default {
             let hours = today.getHours()
             console.log(today)
 
-            if (hours >= 14 && hours <= 19) {
+            if (hours >= 11 && hours <= 14) {
                 $('.btn-plg').addClass('btn-primary')
                 $('.btn-plg').removeClass('btn-secondary')
                 $('.btn-plg').removeClass('disabled')
@@ -374,7 +374,7 @@ export default {
             let minutes = today.getMinutes()
             let second = today.getSeconds()
             this.dataPulang.current_time = hours + ':' + minutes + ':' + second
-            if (hours >= 14 && minutes >= 0) {
+            if (hours >= 11 && minutes >= 0) {
                 updateAttendence(this.dataPulang)
                     .then((response) => {
                         if (response.data){

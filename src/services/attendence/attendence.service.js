@@ -12,6 +12,17 @@ export async function getData() {
     })
 }
 
+export async function getSelectedItem(nis) {
+    return axios.get(base_url+ApiRoute.getSelectedItem+`/${nis}`)
+    .then((response) => {
+        console.log(response.data, 'data')
+        return response.data 
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}
+
 export async function attendenceSiswa(data){
     return axios.post(base_url+ApiRoute.postAttendence, data)
         .then((response) => {

@@ -8,6 +8,7 @@ class ApiRoute {
 
     //---------- Api Guru
     this.getDataAttendence = '/api/attendence'
+    this.getSelectedItem = '/api/attendence'
     this.postAttendence = '/api/attendence'
     this.updateAttendence = '/api/attendence'
 

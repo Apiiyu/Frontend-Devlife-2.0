@@ -113,8 +113,13 @@
                 <template v-slot:cell(created_at)="data">
                     {{timeFormatDate(data.item.created_at)}}
                 </template>
+                <template v-slot:cell(jam_keluar)="data">
+                    <div class="jam-keluar">
+                        {{ data.item.jam_keluar ? data.item.jam_keluar : '-' }}
+                    </div>
+                </template>
                 <template v-slot:cell(action)="data">
-                    <button type="button" class="link-actions" @click="detailProject(data.item)" style="border:0px; background:transparent;">
+                    <button type="button" class="link-actions btn btn-primary btn-sm px-3 py-1 " @click="detailProject(data.item)">
                     Details
                     </button>
                 </template>
@@ -140,7 +145,7 @@ import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { createAlert } from '@/helper/sweetAlert.js'
-import { attendenceSiswa, getData } from '@/services/attendence/attendence.service.js'
+import { attendenceSiswa, getSelectedItem } from '@/services/attendence/attendence.service.js'
 import { timeFormatComplete } from '@/helper/dateFormat'
 import * as faceapi from 'face-api.js'
 import $ from 'jquery'
@@ -236,21 +241,10 @@ export default {
                 })
         },
         getDataAttendence() {
-            getData()
+            getSelectedItem(this.formData.user_nis)
             .then((response) => {
                     if(response.data){
                         this.dataAbsensi = (response.data).sort((a, b) => {return b.updatedAt - a.updatedAt});
-                        // let data = this.dataAbsensi.forEach((item, index) => {
-                        //     item.no = index + 1
-                        //     let jamMasuk = parseInt(item.jam_masuk)
-                            
-                        //     if(jamMasuk >= 6 && jamMasuk <= 7){
-                        //         $('.jam-masuk').css('color', '#00ff00 !important')
-                        //     }else{
-                        //         $('.jam-masuk').text('color', '#ff0000 !important')
-                        //     }
-                        // })
-                        // console.log(data , 'success');
                     } else {
                         console.log('error');
                     }
@@ -380,7 +374,13 @@ export default {
             attendenceSiswa(this.formData)
                 .then((response) => {
                     if(response.data){
-                        createAlert('success', 'Success', 'Successfully fill attendance!')
+                        let confirmation = createAlert('success', 'Success', 'Successfully fill attendance!')
+                        
+                        if(confirmation){
+                            setTimeout(() => {
+                                location.reload()
+                            }, 500)
+                        }
                     } else {
                         createAlert('error', 'Error', 'Error fill attendance!')
                     }
@@ -437,6 +437,11 @@ export default {
      outline: none;
      cursor: pointer;
  }
+.btn-primary{
+    background-color: #4E4081 !important;
+    border-color: #4E4081 !important;
+
+}
  .btn-tampil,.btn-export {
      width: 165px;
      height: 50px;

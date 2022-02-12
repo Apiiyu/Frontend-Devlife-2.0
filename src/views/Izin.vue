@@ -30,7 +30,7 @@
                 <div class="custom-file">
                     <label v-if="namaFile" class="custom-file-label" for="inputGroupFile01">{{ this.nama_file }}</label>
                     <label v-else class="custom-file-label" for="inputGroupFile01">Choose File</label>
-                    <input type="file" ref="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" v-on:change="handleUploadFile()">
+                    <input type="file" ref="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" @change="handleUploadFile()">
                 </div>
                 </div>
                 <span class="d-block text-left main-color mb-1">Deskripsi</span>
@@ -78,7 +78,9 @@ export default {
             this.file = this.$refs.file
             this.name_file = this.$refs.file.files[0].name
             this.formData.lampiran = this.$refs.file.files[0].name
-            console.log('file', this.file);
+
+
+            console.log('file', this.$refs.file.files[0]);
             console.log('nama_file', this.name_file);
         },
         postData(){
