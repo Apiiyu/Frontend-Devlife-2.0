@@ -21,15 +21,15 @@
     "google-maps": "^4.3.3",
     "jquery": "^3.6.0",
     "jquery-ui-dist": "^1.13.0",
-    "node-sass": "^6.0.1",
-    "sass-loader": "^10.2.0",
     "sweetalert2": "^10.16.9",
     "vue": "^2.6.11",
     "vue-owl-carousel": "^2.0.3",
+    "vue-page-transition": "^0.2.2",
     "vue-router": "^3.2.0",
     "vue-sweetalert2": "^5.0.2",
     "vuesax": "^3.12.2",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "wow.js": "^1.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -40,6 +40,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

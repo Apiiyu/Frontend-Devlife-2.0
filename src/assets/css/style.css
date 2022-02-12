@@ -62,7 +62,9 @@
   box-shadow: none !important;
   outline: none;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 a {
   color: #4e4081;
   font-weight: 500;
