@@ -8,7 +8,7 @@
  * @version		2.5.0 (11/03/2018)
  */
 
-;(function ($) {
+(function ($) {
 
 	'use strict';
 
@@ -41,8 +41,10 @@
 		 * @return	{void}
 		 */
 		start: function (options) {
+			// eslint-disable-next-line no-undef
 			_self.origin = lightcase.origin = this;
 
+			// eslint-disable-next-line no-undef
 			_self.settings = lightcase.settings = $.extend(true, {
 				idPrefix: 'lightcase-',
 				classPrefix: 'lightcase-',
@@ -134,7 +136,7 @@
 					'close': 'Close',
 					'navigator.prev': 'Prev',
 					'navigator.next': 'Next',
- 					'navigator.play': 'Play',
+				'navigator.play': 'Play',
 					'navigator.pause': 'Pause'
 				},
 				markup: function () {
@@ -220,7 +222,7 @@
 		 * @return	{object}	objectData
 		 */
 		_setObjectData: function (object) {
-		 	var $object = $(object),
+var $object = $(object),
 				objectData = {
 				this: $(object),
 				title: _self.settings.title || $object.attr(_self._prefixAttributeName('title')) || $object.attr('title'),
@@ -569,6 +571,7 @@
 									_self._showContent($object);
 								}
 							},
+							// eslint-disable-next-line no-unused-vars
 							error: function (jqXHR, textStatus, errorThrown) {
 								_self.error();
 							}
@@ -672,6 +675,7 @@
 							}
 							break;
 						}
+					// eslint-disable-next-line no-fallthrough
 					case 'error':
 						if (!isNaN(dimensions.objectWidth) && dimensions.objectWidth > dimensions.maxWidth) {
 							dimensions.objectWidth = dimensions.maxWidth;
@@ -827,11 +831,13 @@
 			// Verify the dataType of url according to typeMapping which
 			// has been defined in settings.
 			for (var key in typeMapping) {
+				// eslint-disable-next-line no-prototype-builtins
 				if (typeMapping.hasOwnProperty(key)) {
 					var suffixArr = typeMapping[key].split(',');
 
 					for (var i = 0; i < suffixArr.length; i++) {
 						var suffix = suffixArr[i].toLowerCase(),
+							// eslint-disable-next-line no-useless-escape
 							regexp = new RegExp('\.(' + suffix + ')$', 'i'),
 							str = url.toLowerCase().split('?')[0].substr(-5);
 
@@ -898,6 +904,7 @@
 						_self.transition.zoom(_self.objects.case, 'in', _self.settings.speedIn);
 						_self.transition.fade(_self.objects.contentInner, 'in', _self.settings.speedIn);
 				}
+				// eslint-disable-next-line no-fallthrough
 				case 'fade':
 				case 'fadeInline':
 					_self.transition.fade(_self.objects.case, 'in', _self.settings.speedIn);
@@ -920,7 +927,7 @@
 			// Fade in the info with delay
 			_self.objects.info.hide();
 			setTimeout(function () {
-				 _self.transition.fade(_self.objects.info, 'in', _self.settings.speedIn);
+	_self.transition.fade(_self.objects.info, 'in', _self.settings.speedIn);
 			}, _self.settings.speedIn);
 
 			// Call onFinish hook functions
@@ -1280,6 +1287,7 @@
 				};
 
 			for (var key in transitionMapping) {
+				// eslint-disable-next-line no-prototype-builtins
 				if (transitionMapping.hasOwnProperty(key) && key in body.style) {
 					_self.support.transition = transitionMapping[key];
 					isTransitionSupported = true;
@@ -1872,6 +1880,7 @@
 
 			$.each(_self, function (property) {
 				if (_self._isPublicMethod(property)) {
+					// eslint-disable-next-line no-undef
 					lightcase[property] = _self[property];
 				}
 			});
@@ -1890,4 +1899,5 @@
 			$.error('Method ' + method + ' does not exist on jQuery.lightcase');
 		}
 	};
+// eslint-disable-next-line no-undef
 })(jQuery);

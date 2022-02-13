@@ -1,4 +1,8 @@
 <style scoped>
+    *{
+        font-family: 'Raleway', sans-serif;
+    }
+
     .main-wrapper .main-content .card-body .bar-info .title,
     .main-wrapper .main-content .carousel .title{
         font-weight: 600;

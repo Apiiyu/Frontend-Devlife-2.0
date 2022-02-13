@@ -15,7 +15,7 @@
         <Breadcrumb />
         <div class="card-face p-4 ml-3 h-100">
             <form method="post" @submit.prevent="postDataAttendence">
-                <h4 class="text-left main-color">Face Detector</h4>
+                <h4 class="text-left main-color ff-raleway">Face Detector</h4>
                 
                 <div class="camera d-flex flex-column justify-content-center align-items-center" @click="setupCamera()">
                     <i class="fas fa-camera lg"></i>
@@ -38,10 +38,10 @@
 
         <div class="d-flex bd-highlight mt-4 ml-3 align-items-center">
             <div class="mr-auto bd-highlight">
-                <h4 class="text-left">Detail Absen</h4>
+                <h4 class="text-left ff-raleway">Detail Absen</h4>
             </div>
             <div class="bd-highlight">
-                <select name="bulan" class="select-bulan">
+                <select name="bulan" class="select-bulan ff-raleway">
                     <option value="Januari">Januari</option>
                     <option value="Februari">Februari</option>
                     <option value="Maret">Maret</option>
@@ -57,7 +57,7 @@
                 </select>
             </div>
             <div class="bd-highlight mx-3">
-                <select name="tahun" class="select-tahun">
+                <select name="tahun" class="select-tahun ff-raleway">
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
@@ -65,7 +65,7 @@
                 </select>
             </div>
             <div class="bd-highlight">
-                <button class="btn-tampil">Tampilkan</button>
+                <button class="btn-tampil ff-raleway">Tampilkan</button>
             </div>
         </div>
 
@@ -74,16 +74,16 @@
         <div class="card-table ml-3 mt-3 p-4">
             <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h4 class="text-left main-color">Absensi Bulan <br> Januari 2022</h4>
+                <h4 class="text-left main-color ff-raleway">Absensi Bulan <br> Januari 2022</h4>
             </div>
-            <button class="btn-export mt-min">
+            <button class="btn-export mt-min ff-raleway">
                 Export Laporan
             </button>
             </div>
             <div class="table-responsive">
                 <b-table
-                table-class="table table-centered w-100"
-                thead-tr-class="none"
+                table-class="table table-centered w-100 ff-raleway"
+                thead-tr-class="ff-raleway"
                 :items="dataAbsensi"
                 :fields="fields"
                 responsive="sm"
@@ -119,7 +119,7 @@
                     </div>
                 </template>
                 <template v-slot:cell(action)="data">
-                    <button type="button" class="link-actions btn btn-primary btn-sm px-3 py-1 " @click="detailProject(data.item)">
+                    <button type="button" class="link-actions btn btn-primary btn-sm px-3 py-1 ff-raleway" @click="detailProject(data.item)">
                     Details
                     </button>
                 </template>
@@ -394,6 +394,14 @@ export default {
 </script>
 
 <style scoped>
+.ff-poopins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.ff-raleway{
+    font-family: 'Raleway', sans-serif;
+}
+
 .d-none{
     display: none !important;
 }

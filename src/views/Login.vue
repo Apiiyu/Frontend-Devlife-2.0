@@ -21,7 +21,7 @@
             <div class="form-login">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="text" name="nis" id="nis" class="form-control" placeholder="NIS anda" autocomplete="off" v-model="nis">
+                <input type="text" name="nis" id="nis" class="form-control ff-raleway" placeholder="NIS anda" autocomplete="off" v-model="nis">
                 <span class="material-icons">person</span>
               </div>
 
@@ -75,3 +75,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.ff-raleway{
+    font-family: 'Raleway', sans-serif;
+}
+</style>

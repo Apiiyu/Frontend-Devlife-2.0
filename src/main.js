@@ -15,13 +15,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'chart.js/dist/Chart.css'
 import 'chart.js/dist/Chart.min.css'
-import '@/assets/css/style.css'
-import '@/assets/css/components.css'
-import '@/assets/css/custom.css'
 
 import '@/assets/css/lpcss/style.css'
 import '@/assets/css/lpcss/animate.css'
 import '@/assets/css/lpcss/icofont.min.css'
+
+import '@/assets/css/style.css'
+import '@/assets/css/components.css'
+import '@/assets/css/custom.css'
 
 import 'jquery-ui-dist/jquery-ui';
 import 'jquery-ui-dist/jquery-ui.css';
@@ -32,6 +33,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'chart.js/dist/Chart.js'
 import 'chart.js/dist/Chart.min.js'
 import 'face-api.js/dist/face-api.min.js'
+
 
 Vue.use(VueSweetalert2)
 Vue.use(VuePageTransition)

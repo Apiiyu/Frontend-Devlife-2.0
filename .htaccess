@@ -1,0 +1,15 @@
+<IfModule mod_headers.c>
+RewriteEngine On
+RewriteBase /subdirectoryName
+RewriteRule ^subdirectoryName/index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /subdirectoryName/index.html [L]
+
+<FilesMatch ".(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
+
+Header set Access-Control-Allow-Origin "*"
+
+</FilesMatch>
+
+</IfModule>

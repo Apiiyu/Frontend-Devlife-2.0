@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 (function($){
     "use strict";
     $(document).ready(function() {
@@ -24,10 +25,10 @@
         });
 
         //mobile drodown menu display
-        $('.menu-item-has-children>a').on('click', function(e){
+        $('.menu-item-has-children>a').on('click', function(event){
             event.preventDefault();
         });
-        $('.mobile-menu-area ul li a, .shop-menu li a').on('click', function(e) {
+        $('.mobile-menu-area ul li a, .shop-menu li a').on('click', function() {
             var element = $(this).parent('li');
             if (element.hasClass('open')) {
                 element.removeClass('open');
@@ -81,7 +82,9 @@
             });
         });
 
+
         // banner slider section
+        // eslint-disable-next-line no-undef
         var swiper = new Swiper('.banner-slider', {
             slidesPerView: 1,
             spaceBetween: 10,
@@ -96,8 +99,9 @@
             loop: true,
         });
 
-        // sponsor slider section
-        var swiper = new Swiper('.sponsor-slider', {
+        
+        // eslint-disable-next-line no-undef
+        var swiperSponsor = new Swiper('.sponsor-slider', {
             slidesPerView: 5,
             spaceBetween: 10,
             autoplay: {
@@ -117,7 +121,8 @@
             },
             loop: true,
         });
-        var swiper = new Swiper('.sponsor-slider-one', {
+        // eslint-disable-next-line no-undef
+        var swiperSponsorOne = new Swiper('.sponsor-slider-one', {
             slidesPerView: 6,
             spaceBetween: 10,
             autoplay: {
@@ -139,7 +144,8 @@
         });
 
         //Testimonial Slider
-        var swiper = new Swiper('.testimonial-slider', {
+        // eslint-disable-next-line no-undef
+        var swiperTestimonial = new Swiper('.testimonial-slider', {
             slidesPerView: 3,
             spaceBetween: 0,
             autoplay: {
@@ -158,7 +164,8 @@
         });
 
         // post-thumb-slider section
-        var swiper = new Swiper('.post-thumb-slider', {
+        // eslint-disable-next-line no-undef
+        var swiperPost = new Swiper('.post-thumb-slider', {
             slidesPerView: 1,
             autoplay: {
                 delay: 5000,
@@ -210,7 +217,7 @@
                 var newVal = parseFloat(oldValue) + 1;
             } else {
                 if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) - 1;
+                    newVal = parseFloat(oldValue) - 1;
                 } else {
                     newVal = 1;
                 }
@@ -250,6 +257,7 @@
             });
 
             // skill bar or progress bar
+            // eslint-disable-next-line no-undef
             var skillLevel1 = jQuery('.first').data('percent');
             $('.first.circle').circleProgress({
                 value:  '0.' + skillLevel1,
@@ -258,6 +266,7 @@
                 $(this).find('strong').html(Math.round(skillLevel1 * progress) + '<i>%</i>');
             });
             //Circle ProgressBarTwo
+            // eslint-disable-next-line no-undef
             var skillLevel2 = jQuery('.second').data('percent');
             $('.second.circle').circleProgress({
                 value:  '0.' + skillLevel2,
@@ -266,6 +275,7 @@
                 $(this).find('strong').html(Math.round(skillLevel2 * progress) + '<i>%</i>');
             });
             //Circle ProgressBarThree
+            // eslint-disable-next-line no-undef
             var skillLevel3 = jQuery('.third').data('percent');
             $('.third.circle').circleProgress({
                 value:  '0.' + skillLevel3,
@@ -325,6 +335,7 @@
         });
 
         $(function() {
+            // eslint-disable-next-line no-undef
             var galleryThumbs = new Swiper('.pro-single-thumbs', {
                 spaceBetween: 10,
                 slidesPerView: 3,
@@ -338,6 +349,7 @@
                 prevEl: '.pro-single-prev',
                 },
             });
+            // eslint-disable-next-line no-undef
             var galleryTop = new Swiper('.pro-single-top', {
                 spaceBetween: 10,
                 loop:true,
@@ -359,9 +371,11 @@
         });
 
         // wow animation
+        // eslint-disable-next-line no-undef
         new WOW().init();
         if ($(window).width() <= 991){ 
             $(".wow").removeClass("wow");
         }
     });
+// eslint-disable-next-line no-undef
 }(jQuery));

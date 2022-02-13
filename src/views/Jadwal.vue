@@ -30,8 +30,8 @@
 
                     <div class="line mx-3"></div>
 
-                    <div class="content-mapel">
-                        <h4>{{ item.nama_matpel }}</h4>
+                    <div class="content-mapel ">
+                        <h4 class="ff-raleway">{{ item.nama_matpel }}</h4>
                         <div class="info-mapel">
                             <div class="row">
                                 <div class="col-md-6">
@@ -90,6 +90,9 @@ export default {
 </script>
 
 <style scoped>
+.ff-raleway{
+    font-family: 'Raleway', sans-serif;
+}
   .main-content .nav-day {
     background: #fff;
     width: 97.5%;

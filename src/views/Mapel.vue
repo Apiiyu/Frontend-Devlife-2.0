@@ -16,7 +16,7 @@
         <Breadcrumb />
             <div class="card-table ml-3 p-4">
             <div class="d-flex align-items-center">
-                <h4 class="text-left main-color">Guru Mata Pelajaran <br> SMKN 4 Bandung</h4>
+                <h4 class="text-left main-color ff-raleway">Guru Mata Pelajaran <br> SMKN 4 Bandung</h4>
             </div>
             
             <div class="table-responsive">
@@ -142,4 +142,7 @@ export default {
 </script>
 
 <style scoped>
+.ff-raleway {
+    font-family: 'Raleway', sans-serif;
+}
 </style>
