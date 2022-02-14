@@ -32,11 +32,11 @@
                             <br><br>
                           Misi
                           <br>
-                          -Mengedepankan profesionalitas
+                          1. Mengedepankan profesionalitas
                           <br>
-                          -Inovatif dalam pembuatan produk
+                          2. Inovatif dalam pembuatan produk
                           <br>
-                          -Solutif dalam menyelesaikan masalah berbasis IT
+                          3. Solutif dalam menyelesaikan masalah berbasis IT
                           </p>
                           <ul class="icon-style-list">
                               <li><i class="fas fa-home"></i><span>Jalan Kliningan Nomor 6 Buah Batu</span></li>
@@ -95,7 +95,7 @@
                               <div class="team-content">
                                   <a href="team-single.html"><h5 class="member-name">Hans Han Rifaldi</h5></a>
                                   <span class="member-dagi">Project Manager</span>
-                                  <p class="member-details">Bertanggung jawab dalam keseluruhan arah koordinasi,pelaksanaan dan penyelesaian proyek-proyek.</p>
+                                  <p class="member-details">Bertanggung jawab dalam keseluruhan arah koordinasi, pelaksanaan, dan penyelesaian proyek-proyek.</p>
                                   <ul class="icon-style-list">
                                       <li><i class="fas fa-globe"></i><span>hansrifalldi@gmail.com</span></li>
                                       <li>
@@ -192,7 +192,7 @@
                               <div class="team-content">
                                   <a href="team-single.html"><h5 class="member-name">Muhammad Naufal Akmal</h5></a>
                                   <span class="member-dagi">UI/UX Designer</span>
-                                  <p class="member-details">Bertanggung jawab dalam mendesain tampilan secara menarik baik dari sisi bentuk, warna, juga tulisan dan mudah digunakan oleh user.</p>
+                                  <p class="member-details">Bertanggung jawab dalam mendesain tampilan secara menarik baik dari sisi bentuk, warna, juga tulisan agar mudah digunakan oleh user.</p>
                                   <ul class="icon-style-list">
                                       <li><i class="fas fa-globe"></i><span>naufa.uix@gmail.com</span></li>
                                       <li>
