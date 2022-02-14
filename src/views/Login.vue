@@ -63,13 +63,13 @@ export default {
         console.log('ini password', nis)
         this.$store.dispatch('login', { nis, password })
         .then(() => {
-            createAlert('success', 'Success', 'Success login into your account!')
+            createAlert('success', 'Success login into your account!')
             setTimeout(() => {
                 this.$router.push({ name: 'Dashboard'})
             }, 1000)
         })
         .catch(() => {
-            createAlert('error', 'Failed', 'Failed login into your account!')
+            createAlert('error', 'Failed login into your account!')
         })
     }
   }

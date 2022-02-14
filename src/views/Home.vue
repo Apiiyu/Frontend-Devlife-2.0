@@ -401,6 +401,7 @@ export default {
             const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
             
             let time = date.getHours() + ":" + date.getMinutes()
+
             let day = weekday[date.getDay()]
             let fulldate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getUTCFullYear()
             

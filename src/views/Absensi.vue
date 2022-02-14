@@ -316,7 +316,11 @@ export default {
                 this.longitude = longitude
                 this.convertGeocode(latitude, longitude)
 
-                createAlert('success', 'Success get your location', `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
+                
+                this.$toast.success('Success Get Location', {
+                    position: 'top-right',
+                    duration: 1000
+                })
             }
 
             const showErrorGeolocation = (error) => {
@@ -366,7 +370,10 @@ export default {
             }
 
             if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
-                createAlert('error', 'Error', 'Your location is not at school')
+                this.$toast.error('Your location is not school', {
+                    position: 'top-right',
+                    duration: 1000
+                })
                 return false
             }
 
@@ -374,15 +381,19 @@ export default {
             attendenceSiswa(this.formData)
                 .then((response) => {
                     if(response.data){
-                        let confirmation = createAlert('success', 'Success', 'Successfully fill attendance!')
+                        this.$toast.success('Success Fill Attandance', {
+                            position: 'top-right',
+                            duration: 500
+                        })
                         
-                        if(confirmation){
-                            setTimeout(() => {
-                                location.reload()
-                            }, 500)
-                        }
+                        setTimeout(() => {
+                            location.reload()
+                        }, 600)
                     } else {
-                        createAlert('error', 'Error', 'Error fill attendance!')
+                        this.$toast.error('Failed Fill Attandance', {
+                            position: 'top-right',
+                            duration: 500
+                        })
                     }
                 })
                 .catch((error) => {
