@@ -293,7 +293,6 @@ import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { updateAttendence } from '@/services/attendence/attendence.service'
-import { createAlert } from '@/helper/sweetAlert'
 import Carousel from 'vue-owl-carousel'
 import Chart from 'chart.js'
 import $ from 'jquery'
@@ -382,14 +381,17 @@ export default {
                 updateAttendence(this.dataPulang)
                     .then((response) => {
                         if (response.data){
-                            createAlert('success', 'Success', 'Successfully Absen Pulang')
-                            $('.btn-plg').addClass('btn-secondary')
-                            $('.btn-plg').removeClass('btn-primary')
-                            $('.btn-plg').addClass('disabled')
+                                this.$toast.success('Berhasil absen pulang', {
+                                position: 'top-right',
+                                duration: 1500
+                            })
                         }
                     })
-                    .catch((error) => {
-                        console.log(error)
+                    .catch(() => {
+                        this.$toast.error('Belum memasuki jam absen pulang', {
+                        position: 'top-right',
+                        duration: 2000
+                        })
                     })
             } else {
                 return false

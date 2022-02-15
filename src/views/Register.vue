@@ -58,7 +58,6 @@
 
 <script>
 import { createAccount } from '@/services/authentication/register.service.js'
-import { createAlert } from '@/helper/sweetAlert.js'
 
 export default {
     name: 'RegisterApp',
@@ -89,17 +88,26 @@ export default {
             createAccount(data)
                 .then((result) => {
                     if(result){
-                        createAlert('success', 'Success', 'Success create new account!')
+                        this.$toast.success('Pembuatan akun berhasil!', {
+                          position: 'top-right',
+                          duration: 1500
+                        })
                         setTimeout(() => {
-                            this.$router.push({ name: 'Sign In'})
-                        }, 1000)
+                          this.$router.push({ name: 'Dashboard'})
+                        }, 1600)
                         console.log('ini result', result)
                     } else {
-                    createAlert('error', 'Failed', 'Failed create new account!')
+                    this.$toast.error('Gagal membuat akun baru!', {
+                        position: 'top-right',
+                        duration: 2000
+                    })
                     }
                 })
                 .catch(() => {
-                    createAlert('error', 'Failed', 'Failed create new account!')
+                  this.$toast.error('Gagal membuat akun baru!', {
+                    position: 'top-right',
+                    duration: 2000
+                  })
                 })
         }
     }

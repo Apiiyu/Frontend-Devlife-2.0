@@ -144,7 +144,6 @@
 import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
-import { createAlert } from '@/helper/sweetAlert.js'
 import { attendenceSiswa, getSelectedItem } from '@/services/attendence/attendence.service.js'
 import { timeFormatComplete } from '@/helper/dateFormat'
 import * as faceapi from 'face-api.js'
@@ -302,7 +301,10 @@ export default {
                 //     alert('position in school')
                     
                 // } else {
-                //     createAlert('error', 'Failed', `Sorry, your position is not at school`)
+                //     this.$toast.error('Error login into your account', {
+                //        position: 'top-right',
+                //        duration: 2000
+                //     })
 
                 //     await navigator.mediaDevices.getUserMedia({ video: false, audio: false})
                 //     .then((result) => {
@@ -326,16 +328,28 @@ export default {
             const showErrorGeolocation = (error) => {
                 switch(error.code) {
                     case error.PERMISSION_DENIED:
-                        createAlert('error', 'Error', "User denied the request for Geolocation.")
+                        this.$toast.error('Pengguna menolak permintaan Geolokasi.', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        createAlert('error', 'Error', "Location information is unavailable.")
+                        this.$toast.error('Informasi lokasi tidak tersedia.', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                         break;
                     case error.TIMEOUT:
-                        createAlert('error', 'Error', "The request to get user location timed out.")
+                        this.$toast.error('Permintaan untuk mendapatkan lokasi pennguna habis.', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                         break;
                     case error.UNKNOWN_ERROR:
-                        createAlert('error', 'Error', "An unknown error occurred.")
+                        this.$toast.error('Terjadi kesalahan.', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                         break;
                 }
             }
