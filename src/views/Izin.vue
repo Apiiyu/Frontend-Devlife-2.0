@@ -62,9 +62,9 @@ export default {
         return {
             formData: {
                 user_nis: localStorage.getItem('nis'),
-                lampiran: null,
                 deskripsi: '',
-                keterangan: ''
+                keterangan: '',
+                jam_izin: null
             },
             file: '',
             name_file: null
@@ -75,19 +75,30 @@ export default {
             console.log(event.target.value);
         },
         handleUploadFile(){
-            this.file = this.$refs.file
+            this.file = this.$refs.file.files[0] //---> Get Input File
             this.name_file = this.$refs.file.files[0].name
-            this.formData.lampiran = this.$refs.file.files[0].name
 
 
             console.log('file', this.$refs.file.files[0]);
             console.log('nama_file', this.name_file);
         },
         postData(){
+            let today = new Date()
+            let hours = today.getHours()
+            let minutes = today.getMinutes()
+            let second = today.getSeconds()
+            
+            this.formData.jam_izin = hours + ':' + minutes + ':' + second
+
             console.log('ini data form', this.formData)
-            postDataPermission(this.formData)
-            .then((result) => {
-                console.log('ini result', result)
+            postDataPermission(this.formData, this.file)
+            .then(() => {
+                this.$toast.success({
+                    title: 'Berhasil',
+                    message: 'Berhasil mengajukan permohonan izin/sakit',
+                    position: 'top-right',
+                    duration: 3000
+                })
             }) 
             .catch((error) => {
                 console.log(error)
