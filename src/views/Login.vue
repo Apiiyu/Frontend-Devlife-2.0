@@ -44,8 +44,6 @@
 </template>
 
 <script>
-import { createAlert } from '@/helper/sweetAlert.js'
-
 
 export default {
   name: 'LoginApp',
@@ -63,13 +61,19 @@ export default {
         console.log('ini password', nis)
         this.$store.dispatch('login', { nis, password })
         .then(() => {
-            createAlert('success', 'Success login into your account!')
+            this.$toast.success('Berhasil login ke dalam aplikasi', {
+                position: 'top-right',
+                duration: 1500
+            })
             setTimeout(() => {
                 this.$router.push({ name: 'Dashboard'})
-            }, 1000)
+            }, 1600)
         })
         .catch(() => {
-            createAlert('error', 'Failed login into your account!')
+            this.$toast.error('Error login into your account', {
+                position: 'top-right',
+                duration: 2000
+            })
         })
     }
   }

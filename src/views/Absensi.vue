@@ -372,7 +372,7 @@ export default {
             if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
                 this.$toast.error('Your location is not school', {
                     position: 'top-right',
-                    duration: 1000
+                    duration: 2000
                 })
                 return false
             }
@@ -383,16 +383,16 @@ export default {
                     if(response.data){
                         this.$toast.success('Success Fill Attandance', {
                             position: 'top-right',
-                            duration: 500
+                            duration: 2000
                         })
                         
                         setTimeout(() => {
                             location.reload()
-                        }, 600)
+                        }, 2100)
                     } else {
                         this.$toast.error('Failed Fill Attandance', {
                             position: 'top-right',
-                            duration: 500
+                            duration: 2000
                         })
                     }
                 })
