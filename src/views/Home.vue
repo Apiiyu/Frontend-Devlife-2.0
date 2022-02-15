@@ -92,6 +92,8 @@
     }
     .card .card-date {
         padding: 45px;
+        height: 345px;
+        margin-top: 50px;
     }
 
     @media screen and (max-width: 1368px) {
@@ -133,42 +135,15 @@
         <Breadcrumb />
 
         <div class="row">
-          <div class="col-lg-6 col-xl-6 col-xxl-6">
+          <div class="col-lg-9 col-xl-9 col-xxl-9">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex align-content-center">
                     <div class="bar-info">
-                        <h1 class="title mt-5">Persentase Kehadiran</h1>
-
-                        <div class="detail-info d-flex mt-5">
-                            <div class="box-sakit">
-                                <p>Sakit</p>
-                            </div>
-
-                            <div class="box-value mr-2">
-                                2
-                            </div>
-
-                            <div class="box-sakit">
-                                <p>Izin</p>
-                            </div>
-
-                            <div class="box-value mr-2">
-                                5
-                            </div>
-
-                            <div class="box-sakit">
-                                <p>Alpha</p>
-                            </div>
-
-                            <div class="box-value">
-                                1
-                            </div>
-                        </div>
+                        <h1 class="title mt-1">Persentase Kehadiran</h1>
                     </div>
-                    
-                    <canvas id="barAbsensi" width="423" height="211"></canvas>
                 </div>
+                <canvas id="barAbsensi" width="500px" height="200px" style="width: 480px; margin-left: 10px"></canvas>
               </div>
             </div>
           </div>
@@ -176,29 +151,11 @@
           <div class="col-lg-3 col-xl-3 col-xxl-3">
             <div class="card">
               <div class="card-body card-date">
-                <div class="date-time">
-                  <div class="text-center">
-                    <h3 class="title-hours">
-                      Jam
-                    </h3>
-
-                    <p class="info-datetime"></p>
-                    <p class="info-day"></p>
-                    <p class="info-fulldate"></p>
-                  </div>
-                </div>
+                <vCalendar :from-page="{ month: 2, year: 2022}" :timezone="timezone" :attributes="attrs" />
               </div>
             </div>
             
             <button class="btn btn-plg disabled btn-secondary" id="absenPulang" @click="attandancePulang()">Absen Pulang</button>
-          </div>
-
-          <div class="col-lg-3 col-xl-3 col-xxl-3">
-            <div class="card">
-              <div class="card-body calendar">
-                <b-calendar v-model="value" :date-disabled-fn="dateDisabled" locale="id"></b-calendar>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -220,7 +177,7 @@
                                 <p class="teacher d-flex justify-content-start">Moch. Ihsan, M .Pd.</p>
                             </div>
 
-                            <button class="btn btn-primary btn-attendence mt-4">Absen</button>
+                            <button class="btn btn-primary btn-attendence mt-4">Detail</button>
                         </div>
                         
                         <div class="box-matpel">
@@ -234,7 +191,7 @@
                                 <p class="teacher d-flex justify-content-start">Neneng Wahdatul Fitriyah, S.pd</p>
                             </div>
 
-                            <button class="btn btn-primary btn-attendence">Absen</button>
+                            <button class="btn btn-primary btn-attendence">Detail</button>
                         </div>
 
                         <div class="box-matpel">
@@ -248,7 +205,7 @@
                                 <p class="teacher d-flex justify-content-start">Drs. H. Asep Mulyana. M,Ag.</p>
                             </div>
 
-                            <button class="btn btn-primary btn-attendence mt-4">Absen</button>
+                            <button class="btn btn-primary btn-attendence mt-4">Detail</button>
                         </div>
 
                         <div class="box-matpel">
@@ -262,7 +219,7 @@
                                 <p class="teacher d-flex justify-content-start">Rizky Amallia Eshi, S.pd</p>
                             </div>
 
-                            <button class="btn btn-primary btn-attendence">Absen</button>
+                            <button class="btn btn-primary btn-attendence">Detail</button>
                         </div>
                         <div class="box-matpel">
                             <div class="box-icon">
@@ -275,7 +232,7 @@
                                 <p class="teacher d-flex justify-content-start">Moch. Ihsan, M .Pd.</p>
                             </div>
 
-                            <button class="btn btn-primary btn-attendence mt-4">Absen</button>
+                            <button class="btn btn-primary btn-attendence mt-4">Detail</button>
                         </div>
                     </Carousel>
                 </section>
@@ -296,6 +253,7 @@ import { updateAttendence } from '@/services/attendence/attendence.service'
 import Carousel from 'vue-owl-carousel'
 import Chart from 'chart.js'
 import $ from 'jquery'
+import vCalendar from 'v-calendar'
 
 export default {
     name: 'Home',
@@ -303,7 +261,8 @@ export default {
         Navbar,
         Sidebar,
         Breadcrumb,
-        Carousel
+        Carousel,
+        vCalendar
     },
     data(){
         return{
@@ -314,27 +273,48 @@ export default {
             },
             value: '',
             chart_content: {
-                type: 'doughnut',
+                type: 'line',
                 data: {
-                    labels: ['95%'],
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     datasets: [
                         {
                             borderWidth: 2,
-                            data: [95, 5],
-                            backgroundColor: ['rgb(78, 64, 129)', 'rgb(255,255,255)'],
+                            data: [50, 30, 40, 70, 70, 75, 25, 50, 70, 60, 30, 50],
                             borderColor: ['rgb(78, 64, 129)'],
+                            backgroundColor: ['rgba(78, 64, 129, 0.1)'],
                             borderSkipped: false
                         }
                     ]
                 }, 
                 options: {
                     responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        }
+                    legend: {
+                        display: false
                     },
-                    cornerRadius: 10
+                    tooltips: {
+                        enabled: false
+                    },
+                    cornerRadius: 10,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display: true
+                            },
+                            ticks: {
+                                max: 100 ,
+                                min: 0,
+                                stepSize: 25,
+                                fontFamily: 'Poppins',
+                                fontColor: '#B9B9C3',
+                                fontStyle: 'bold'
+                            }
+                        }]
+                    }
                 },
             }
         }
