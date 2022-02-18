@@ -151,7 +151,13 @@
           <div class="col-lg-3 col-xl-3 col-xxl-3">
             <div class="card">
               <div class="card-body card-date">
+                <template>
+                  <clock :time="time" size="200px" style="margin-top:-57px;"></clock>
+                </template>
                 <vCalendar :from-page="{ month: 2, year: 2022}" :timezone="timezone" :attributes="attrs" />
+                <p class="info-datetime mt-3"></p>
+                <p class="info-day"></p>
+                <p class="info-fulldate"></p>
               </div>
             </div>
             
@@ -254,6 +260,9 @@ import Carousel from 'vue-owl-carousel'
 import Chart from 'chart.js'
 import $ from 'jquery'
 import vCalendar from 'v-calendar'
+import Clock from 'vue-clock2'
+
+
 
 export default {
     name: 'Home',
@@ -262,7 +271,8 @@ export default {
         Sidebar,
         Breadcrumb,
         Carousel,
-        vCalendar
+        vCalendar,
+        Clock
     },
     data(){
         return{
