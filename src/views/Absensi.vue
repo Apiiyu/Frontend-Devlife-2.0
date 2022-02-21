@@ -23,13 +23,10 @@
                     
                 </div>
 
-                <div class="camera camera-video d-none d-flex justify-content-center align-items-center" id="div">
+                <div class="camera camera-video d-none" id="div">
                     <!-- Webcam -->
-                    <video id="video" width="720px" height="480px" autoplay muted>
-
-                        <canvas style="position: absolute; left: 453px;" id="canvas"></canvas>
-
-                    </video>
+                    <canvas style="position: absolute;" id="canvas"></canvas>
+                    <video id="video" width="720px" height="480px" autoplay muted></video>
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">
@@ -280,7 +277,7 @@ export default {
                         faceapi.nets.faceExpressionNet.loadFromUri('/models'),
                         faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
                     ])
-                    const div = document.getElementById('div')
+                    // const div = document.getElementById('div')
                     const video = document.getElementById('video')
                     const canvas = document.getElementById('canvas')
 
@@ -290,7 +287,7 @@ export default {
                     video.addEventListener('play', () => {
                         console.log('event ok')
                         // const canvas = faceapi.createCanvasFromMedia(video)
-                        div.append(canvas)
+                        // div.append(canvas)
                         const displaySize = { width: video.width, height: video.height }
                         faceapi.matchDimensions(canvas, displaySize)
                         setInterval(async () => {
