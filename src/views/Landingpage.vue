@@ -102,7 +102,9 @@
                             <div class="lab-content">
                                 <h2>Tampilan user yang menarik</h2>
                                 <p>Website devector memiliki tampilan user interface yang menarik sehingga membuat tampilan lebih nyaman dan enak dipandang.</p>
-                                <a href="#" class="lab-btn"><span>View Details</span></a>
+                                <router-link :to="{ name: 'Sign In'}" class="lab-btn">
+                                    <span>View Details</span>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -125,7 +127,9 @@
                             <div class="lab-content">
                                 <h2>Terdapat banyak fitur yang bisa digunakan</h2>
                                 <p>Website devector memiliki banyak fitur yang dapat digunakan, salah satu contohnya yaitu fitur pendeteksi wajah yang berfungsi mendeteksi wajah seseorang dan datanya akan langsung masuk ke dalam database.</p>
-                                <a href="#" class="lab-btn"><span>View Details</span></a>
+                                <router-link :to="{ name: 'Sign In'}" class="lab-btn">
+                                    <span>View Details</span>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -148,7 +152,9 @@
                             <div class="lab-content">
                                 <h2>Tampilan halaman admin yang colorfull</h2>
                                 <p>Website devector memiliki tampilan admin yang menarik dan terdapat banyak presentase kehadiran, yang membuat perhitungan admin lebih enak dilihat.</p>
-                                <a href="#" class="lab-btn"><span>View Details</span></a>
+                                <router-link :to="{ name: 'Sign In'}" class="lab-btn">
+                                    <span>View Details</span>
+                                </router-link>
                             </div>
                         </div>
                     </div>

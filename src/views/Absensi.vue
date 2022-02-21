@@ -17,7 +17,7 @@
             <form method="post" @submit.prevent="postDataAttendence">
                 <h4 class="text-left main-color ff-raleway">Face Detector</h4>
                 
-                <div class="camera d-flex flex-column justify-content-center align-items-center" @click="setupCamera()">
+                <div class="camera d-flex flex-column justify-content-center align-items-center" @click="faceDetector()">
                     <i class="fas fa-camera lg"></i>
                     <span class="txt mt-2">Buka Kamera untuk mengaktifkan fitur face Detector</span>
                     
@@ -71,16 +71,16 @@
 
 
 
-        <div class="card-table ml-3 mt-3 p-4">
+        <div class="card-table ml-3 mt-3 p-4 w-100">
             <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h4 class="text-left main-color ff-raleway">Absensi Bulan <br> Januari 2022</h4>
             </div>
-            <button class="btn-export mt-min ff-raleway">
+            <button class="btn-export mt-min ff-raleway" @click="convertToPDF">
                 Export Laporan
             </button>
             </div>
-            <div class="table-responsive">
+            <div id="box-laporan-absensi" class="table-responsive">
                 <b-table
                 table-class="table table-centered w-100 ff-raleway"
                 thead-tr-class="ff-raleway"
@@ -147,6 +147,8 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 import { attendenceSiswa, getSelectedItem } from '@/services/attendence/attendence.service.js'
 import { timeFormatComplete } from '@/helper/dateFormat'
 import * as faceapi from 'face-api.js'
+import JSPDF from 'jspdf'
+import htmlcanvas from 'html2canvas'
 import $ from 'jquery'
 window.$ = $
 
@@ -208,6 +210,19 @@ export default {
         this.getDataAttendence()
     },
     methods: {
+        convertToPDF(){
+            let boxData = document.getElementById('box-laporan-absensi')
+            let pdf = new JSPDF('landscape')
+            htmlcanvas(boxData)
+                .then((canvas) => {
+                    let imgData = canvas.toDataURL()
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight())
+                    pdf.save('Laporan Absensi.pdf')
+                })
+                .catch(() => {
+                    this.$toast.error('Terjadi Kesalahan')
+                })
+        },
         timeFormatDate(date){
             return timeFormatComplete(date)
         },
@@ -252,73 +267,15 @@ export default {
                     console.log(error)
                 })
         },
-        setupCamera: function (){
-
+        createGeolocation(){
             const showPositionGeolocation = async (position) => {
                 let latitude = position.coords.latitude  
                 let longitude = position.coords.longitude 
-                // -6.941667372971486, 107.63881253127151
-        
-                console.log(parseFloat(latitude), 'ini latitude')
-                console.log(parseFloat(longitude), 'ini longitude')
-                // if (latitude > -6.9107711){
-                //     alert('condition oke')
-                // } else {
-                //     alert('condition false')
-                // }
-
-                $('.camera').addClass('d-none')
-                    $('.camera-video').addClass('show')
-                    Promise.all([
-                        faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models')
-                    ])
-                    const video = document.getElementById('video')
-                    
-                    let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
-                        video.srcObject = stream
-
-                    video.addEventListener('play', () => {
-                        console.log('event ok')
-                        const canvas = faceapi.createCanvasFromMedia(video)
-                        document.body.append(canvas)
-                        const displaySize = { width: video.width, height: video.height }
-                        faceapi.matchDimensions(canvas, displaySize)
-                        setInterval(async () => {
-                            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-                            console.log(detections)
-                            const resizedDetections = faceapi.resizeResults(detections, displaySize)
-                            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-                            faceapi.draw.drawDetections(canvas, resizedDetections)
-                            faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-                            faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-                        }, 100)
-                    })
-
-                // if (latitude >= 0){
-                //     alert('position in school')
-                    
-                // } else {
-                //     this.$toast.error('Error login into your account', {
-                //        position: 'top-right',
-                //        duration: 2000
-                //     })
-
-                //     await navigator.mediaDevices.getUserMedia({ video: false, audio: false})
-                //     .then((result) => {
-                //         console.log(result)
-                //     })
-                //     return false
-                // }
-                
-                // Set data 
+            
                 this.latitude = latitude
                 this.longitude = longitude
                 this.convertGeocode(latitude, longitude)
-
-                
+    
                 this.$toast.success('Success Get Location', {
                     position: 'top-right',
                     duration: 1000
@@ -354,15 +311,49 @@ export default {
                 }
             }
 
-            // Get Location
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPositionGeolocation, showErrorGeolocation);
             } else { 
                 alert("Geolocation is not supported by this browser.")
             }
-
-            
         },
+        setupVideo(){
+            const video = document.getElementById('video')
+            navigator.getUserMedia({ video: {}, },
+                stream => video.srcObject = stream,
+                error => console.error(error)
+            )
+
+            video.addEventListener('play', () => {
+                const canvas = faceapi.createCanvasFromMedia(video)
+                document.body.append(canvas)
+                const displaySize = { width: video.width, height: video.height }
+                faceapi.matchDimensions(canvas, displaySize)
+
+                setInterval(async () => {
+                    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+                    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+                    faceapi.draw.drawDetections(canvas, resizedDetections)
+                    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+                    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+                }, 100)
+            })
+        },
+        faceDetector(){
+            $('.camera').addClass('d-none')
+            $('.camera-video').addClass('show')
+            Promise.all([
+                faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
+                faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
+                faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
+                faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models') 
+            ])
+            .then(this.setupVideo())  
+            
+            //event geolocation
+            this.createGeolocation()
+        },    
         outputCapture(){
             console.log('action ok')
             const video = document.getElementById('video')
