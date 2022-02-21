@@ -3338,6 +3338,7 @@ pre {
 
 /* 4.4 Layout */
 .main-sidebar {
+  overflow-y: scroll;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   position: fixed;
   top: 0;
@@ -3346,6 +3347,22 @@ pre {
   background-color: #fff;
   z-index: 880;
   left: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8174b5; 
+  border-radius: 10px;
 }
 
 .main-sidebar,
