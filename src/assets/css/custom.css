@@ -285,7 +285,7 @@ body {
   .register .content-register .form-register .form-nis input,
   .register .content-register .form-register .form-name input,
   .register .content-register .form-register .form-email input,
-  .register .content-register .form-register .form-jurusan input {
+  .register .content-register .form-register .form-jurusan select {
     position: absolute;
     width: 350px;
     top: 35px;
