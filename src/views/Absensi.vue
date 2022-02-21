@@ -27,7 +27,7 @@
                     <!-- Webcam -->
                     <video id="video" width="720px" height="480px" autoplay muted>
 
-                        <canvas style="position: absolute; left: 500px;" id="canvas"></canvas>
+                        <canvas style="position: absolute; left: 453px;" id="canvas"></canvas>
 
                     </video>
                 </div>
