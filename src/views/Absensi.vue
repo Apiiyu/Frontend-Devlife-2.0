@@ -23,15 +23,16 @@
                     
                 </div>
 
-                <div class="camera camera-video d-none">
+                <div class="camera camera-video d-none" id="div">
                     <!-- Webcam -->
-                    <video id="video" style="width: 100%; height: 500px;" autoplay muted></video>
+                    <canvas style="position: absolute;" id="canvas"></canvas>
+                    <video id="video" width="720px" height="480px" autoplay muted></video>
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">
                     <button class="btn-tampil" type="submit" @click="outputCapture()">Ambil Photo</button>
                     <!-- Output Capture Photo -->
-                    <canvas id="canvas" class="d-none" style="width: 100%; height: 500px"></canvas>
+                    <!-- <canvas id="canvas" class="d-none" style="width: 100%; height: 500px"></canvas> -->
                 </div>
             </form>
         </div>
@@ -151,7 +152,6 @@ import JSPDF from 'jspdf'
 import htmlcanvas from 'html2canvas'
 import $ from 'jquery'
 window.$ = $
-
 export default {
     name: 'Absensi',
     components: {
@@ -281,7 +281,6 @@ export default {
                     duration: 1000
                 })
             }
-
             const showErrorGeolocation = (error) => {
                 switch(error.code) {
                     case error.PERMISSION_DENIED:
@@ -310,7 +309,6 @@ export default {
                         break;
                 }
             }
-
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPositionGeolocation, showErrorGeolocation);
             } else { 
@@ -323,13 +321,11 @@ export default {
                 stream => video.srcObject = stream,
                 error => console.error(error)
             )
-
             video.addEventListener('play', () => {
                 const canvas = faceapi.createCanvasFromMedia(video)
                 document.body.append(canvas)
                 const displaySize = { width: video.width, height: video.height }
                 faceapi.matchDimensions(canvas, displaySize)
-
                 setInterval(async () => {
                     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
                     const resizedDetections = faceapi.resizeResults(detections, displaySize)
@@ -373,7 +369,6 @@ export default {
             } else {
                 this.formData.keterangan = 'Terlambat'
             }
-
             if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
                 this.$toast.error('Your location is not school', {
                     position: 'top-right',
@@ -381,7 +376,6 @@ export default {
                 })
                 return false
             }
-
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)
                 .then((response) => {
@@ -413,11 +407,9 @@ export default {
 .ff-poopins {
     font-family: 'Poppins', sans-serif;
 }
-
 .ff-raleway{
     font-family: 'Raleway', sans-serif;
 }
-
 .d-none{
     display: none !important;
 }
@@ -464,7 +456,6 @@ export default {
 .btn-primary{
     background-color: #4E4081 !important;
     border-color: #4E4081 !important;
-
 }
  .btn-tampil,.btn-export {
      width: 165px;
@@ -490,5 +481,4 @@ export default {
  thead,tbody {
      font-size: 16px;
  }
-
 </style>

@@ -4,13 +4,14 @@ import ApiRoute from '../services/api.route'
 
 export default (to, from, next) => {
   const token = localStorage.getItem('token')
+  console.log('ini token', token)
     if (localStorage.getItem('user') != null && localStorage.getItem('user').length > 0) {
-    axios({ 
-      url: base_url+ApiRoute.checkBearer, 
-      method: 'GET',
-      headers:{
-        "Authorization": "Bearer "+token,
-      }
+        axios({ 
+        url: base_url+ApiRoute.checkBearer, 
+        method: 'GET',
+        headers:{
+            "Authorization": "Bearer "+token,
+        }
     })
     .then(resp => {
       console.log(resp)
