@@ -101,14 +101,14 @@ export default {
                           duration: 1500
                         })
                         setTimeout(() => {
-                          this.$router.push({ name: 'Dashboard'})
+                          this.$router.push({ name: 'Sign In'})
                         }, 1600)
                         console.log('ini result', result)
                     } else {
-                    this.$toast.error('Gagal membuat akun baru!', {
-                        position: 'top-right',
-                        duration: 2000
-                    })
+                        this.$toast.error('Gagal membuat akun baru!', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(() => {

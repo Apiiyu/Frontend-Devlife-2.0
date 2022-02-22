@@ -38,25 +38,25 @@ export default new Vuex.Store({
           data: user,
           method: 'POST'
         })
-          .then((response) => {
-            console.log('Success login into your account', response)
-            const token = response.data.access_token.token
-            const user = response.data.data
-            console.log(user)
+            .then((response) => {
+                console.log('Success login into your account', response)
+                const token = response.data.access_token.token
+                const user = response.data.data
+                console.log(user)
 
-            localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
+                localStorage.setItem('token', token)
+                localStorage.setItem('user', JSON.stringify(user))
 
-            // Add the following line:
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-            commit('auth_success', token, user)
-            resolve(response)
-          })
-          .catch((error) => {
-            commit('auth_error')
-            localStorage.removeItem('token')
-            reject(error)
-          })
+                // Add the following line:
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+                commit('auth_success', token, user)
+                resolve(response)
+            })
+            .catch((error) => {
+                commit('auth_error')
+                localStorage.removeItem('token')
+                reject(error)
+            })
       })
     },
     logout({ commit }) {
