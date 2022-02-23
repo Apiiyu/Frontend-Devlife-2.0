@@ -3361,7 +3361,7 @@ pre {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #8174b5; 
+  background: #c2c2c2; 
   border-radius: 10px;
 }
 

@@ -33,6 +33,16 @@
               <li class="nav-item down mt--1">
                 <router-link :to="{ name: 'Settings' }" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></router-link>
               </li>
+              <li class="menu-header my-2 mt--1">Lainnya</li>
+              <li class="nav-item mt--1">
+                <router-link :to="{ name: 'News' }" class="nav-link" href="https://smkn4bdg.sch.id/berita" target="_blank"><i class="fas fa-newspaper text-left"></i><span>Kabar Terbaru</span></router-link>
+              </li>
+              <li class="nav-item mt--1">
+                <router-link :to="{ name: 'Location' }" class="nav-link"  href="https://www.google.co.id/maps/place/SMKN+4+Bandung/@-6.9415418,107.6266874,17z/data=!3m1!4b1!4m5!3m4!1s0x2e68e86413eb50ad:0xf9930b5268e3fee1!8m2!3d-6.9415397!4d107.6288457" target="_blank"><i class="fas fa-map-marker-alt text-left"></i><span>Lokasi</span></router-link>
+              </li>
+              <li class="nav-item mt--1">
+                <router-link :to="{ name: 'LMS' }" class="nav-link"><i class="fas fa-school text-left" href="https://belajar.smkn4bdg.sch.id/" target="_blank"></i><span>LMS</span></router-link>
+              </li>
               </ul>
         </aside>
       </div>
