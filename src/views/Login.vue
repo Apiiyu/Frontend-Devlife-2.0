@@ -44,39 +44,40 @@
 </template>
 
 <script>
-
 export default {
-  name: 'LoginApp',
-  data() {
-    return {
-      nis: null,
-      password: null
-    }
-  },
-  methods: {
-    login(){
-        console.log('nis', this.nis)
-        let nis = this.nis
-        let password = this.password
-        console.log('ini password', nis)
-        this.$store.dispatch('login', { nis, password })
-        .then(() => {
-            this.$toast.success('Berhasil login ke dalam aplikasi', {
-                position: 'top-right',
-                duration: 1500
+    name: 'LoginApp',
+    data() {
+        return {
+        nis: null,
+        password: null
+        }
+    },
+    methods: {
+        login(){
+            console.log('nis', this.nis)
+            let nis = this.nis
+            let password = this.password
+            console.log('ini password', nis)
+            this.$store.dispatch('login', { nis, password })
+            .then((result) => {
+                console.log('ini result', result)
+                this.$toast.success('Berhasil login ke dalam aplikasi', {
+                    position: 'top-right',
+                    duration: 1500
+                })
+                setTimeout(() => {
+                    this.$router.push({ name: 'Dashboard'})
+                }, 1600)
             })
-            setTimeout(() => {
-                this.$router.push({ name: 'Dashboard'})
-            }, 1600)
-        })
-        .catch(() => {
-            this.$toast.error('Error login into your account', {
-                position: 'top-right',
-                duration: 2000
+            .catch((error) => {
+                console.log('ini error', error)
+                this.$toast.error('Error login into your account', {
+                    position: 'top-right',
+                    duration: 2000
+                })
             })
-        })
+        }
     }
-  }
 }
 </script>
 

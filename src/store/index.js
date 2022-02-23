@@ -7,76 +7,77 @@ import ApiRoute from '../services/api.route'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    status: '',
-    token: localStorage.getItem('token') || '',
-    user: {}
-  },
-  mutations: {
-    auth_request(state) {
-      state.status = 'loading'
+    state: {
+        status: '',
+        token: localStorage.getItem('token') || '',
+        user: {}
     },
-    auth_success(state, token, user){
-      state.status = 'success'
-      state.token = token
-      state.user = user
+    mutations: {
+        auth_request(state) {
+            state.status = 'loading'
+        },
+        auth_success(state, token, user){
+            state.status = 'success'
+            state.token = token
+            state.user = user
+        },
+        auth_error(state){
+            state.status = 'error'
+        },
+        logout(state){
+            state.status = ''
+            state.token = ''
+        }
     },
-    auth_error(state){
-      state.status = 'error'
-    },
-    logout(state){
-      state.status = ''
-      state.token = ''
-    }
-  },
-  actions: {
-    login({ commit }, user){
-      return new Promise((resolve, reject) => {
-        commit('auth_request')
-        axios({
-          url: base_url+ApiRoute.login, 
-          data: user,
-          method: 'POST'
+    actions: {
+        login({ commit }, user){
+        return new Promise((resolve, reject) => {
+            commit('auth_request')
+            axios({
+                url: base_url+ApiRoute.login, 
+                data: user,
+                method: 'POST'
+            })
+                .then((response) => {
+                    console.log('Success login into your account', response)
+                    const token = response.data.data.access_token
+                    console.log('token', token)
+                    const user = response.data.data.data
+                    console.log('ini data user', user)
+
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('user', JSON.stringify(user))
+
+                    // Add the following line:
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+                    commit('auth_success', token, user)
+                    resolve(response)
+                })
+                .catch((error) => {
+                    commit('auth_error')
+                    localStorage.removeItem('token')
+                    reject(error)
+                })
         })
-            .then((response) => {
-                console.log('Success login into your account', response)
-                const token = response.data.access_token.token
-                const user = response.data.data
-                console.log(user)
-
-                localStorage.setItem('token', token)
-                localStorage.setItem('user', JSON.stringify(user))
-
-                // Add the following line:
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-                commit('auth_success', token, user)
-                resolve(response)
+        },
+        logout({ commit }) {
+            return new Promise((resolve, reject) => {
+                axios({ url: base_url+ApiRoute.logout, method: 'POST' })
+                .then(resp => {
+                    console.log("data logoout",resp)
+                    commit('logout')
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('user')
+                    localStorage.removeItem('user')
+                    delete axios.defaults.headers.common['Authorization']
+                    resolve();
+                }).catch((e) => { 
+                    console.log("error",e);
+                    reject(e)
+                })
             })
-            .catch((error) => {
-                commit('auth_error')
-                localStorage.removeItem('token')
-                reject(error)
-            })
-      })
+        }
     },
-    logout({ commit }) {
-      return new Promise((resolve, reject) => {
-        axios({ url: base_url+ApiRoute.logout, method: 'POST' })
-        .then(resp => {
-            console.log("data logoout",resp)
-            commit('logout')
-            localStorage.removeItem('token')
-            localStorage.removeItem('user')
-            localStorage.removeItem('user')
-            delete axios.defaults.headers.common['Authorization']
-            resolve();
-          }).catch((e) => { 
-            console.log("error",e);
-            reject(e)
-          })
-      })
+    modules: {
     }
-  },
-  modules: {
-  }
 })
