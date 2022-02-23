@@ -258,16 +258,6 @@ export default {
             const showPositionGeolocation = async (position) => {
                 let latitude = position.coords.latitude  
                 let longitude = position.coords.longitude 
-                // -6.941667372971486, 107.63881253127151
-        
-                console.log(parseFloat(latitude), 'ini latitude')
-                console.log(parseFloat(longitude), 'ini longitude')
-                // if (latitude > -6.9107711){
-                //     alert('condition oke')
-                // } else {
-                //     alert('condition false')
-                // }
-
                 $('.camera').addClass('d-none')
                     $('.camera-video').addClass('show')
                     Promise.all([
@@ -300,24 +290,6 @@ export default {
                             faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
                         }, 100)
                     })
-
-                // if (latitude >= 0){
-                //     alert('position in school')
-                    
-                // } else {
-                //     this.$toast.error('Error login into your account', {
-                //        position: 'top-right',
-                //        duration: 2000
-                //     })
-
-                //     await navigator.mediaDevices.getUserMedia({ video: false, audio: false})
-                //     .then((result) => {
-                //         console.log(result)
-                //     })
-                //     return false
-                // }
-                
-                // Set data 
                 this.latitude = latitude
                 this.longitude = longitude
                 this.convertGeocode(latitude, longitude)
@@ -392,6 +364,7 @@ export default {
                     position: 'top-right',
                     duration: 2000
                 })
+                console.log('ini form data', this.formData)
                 return false
             }
 
