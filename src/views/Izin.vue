@@ -28,8 +28,8 @@
                 <span class="d-block text-left main-color mb-1">Lampiran</span>
                 <div class="input-group mb-3">
                 <div class="custom-file">
-                    <label v-if="namaFile" class="custom-file-label" for="inputGroupFile01">{{ this.nama_file }}</label>
-                    <label v-else class="custom-file-label" for="inputGroupFile01">Choose File</label>
+                    <label v-if="this.nama_file" class="custom-file-label" for="inputGroupFile01">{{ this.nama_file }}</label>
+                    <label v-else class="custom-file-label" for="inputGroupFile01">{{ this.nama_file }}</label>
                     <input type="file" ref="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" @change="handleUploadFile()">
                 </div>
                 </div>

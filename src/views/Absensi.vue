@@ -23,15 +23,16 @@
                     
                 </div>
 
-                <div class="camera camera-video d-none">
+                <div class="camera camera-video d-none" id="div">
                     <!-- Webcam -->
-                    <video id="video" style="width: 100%; height: 500px;" autoplay muted></video>
+                    <canvas style="position: absolute;" id="canvas"></canvas>
+                    <video id="video" width="720px" height="480px" autoplay muted></video>
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">
                     <button class="btn-tampil" type="submit" @click="outputCapture()">Ambil Photo</button>
                     <!-- Output Capture Photo -->
-                    <canvas id="canvas" class="d-none" style="width: 100%; height: 500px"></canvas>
+                    <!-- <canvas id="canvas" class="d-none" style="width: 100%; height: 500px"></canvas> -->
                 </div>
             </form>
         </div>
@@ -150,6 +151,7 @@ import * as faceapi from 'face-api.js'
 import $ from 'jquery'
 window.$ = $
 
+
 export default {
     name: 'Absensi',
     components: {
@@ -253,7 +255,6 @@ export default {
                 })
         },
         setupCamera: function (){
-
             const showPositionGeolocation = async (position) => {
                 let latitude = position.coords.latitude  
                 let longitude = position.coords.longitude 
@@ -270,20 +271,23 @@ export default {
                 $('.camera').addClass('d-none')
                     $('.camera-video').addClass('show')
                     Promise.all([
-                        faceapi.nets.tinyFaceDetector.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceLandmark68Net.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceRecognitionNet.loadFromUri('@/assets/models'),
-                        faceapi.nets.faceExpressionNet.loadFromUri('@/assets/models')
+                        faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+                        faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+                        faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+                        faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+                        faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
                     ])
+                    // const div = document.getElementById('div')
                     const video = document.getElementById('video')
-                    
+                    const canvas = document.getElementById('canvas')
+
                     let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false})
                         video.srcObject = stream
 
                     video.addEventListener('play', () => {
                         console.log('event ok')
-                        const canvas = faceapi.createCanvasFromMedia(video)
-                        document.body.append(canvas)
+                        // const canvas = faceapi.createCanvasFromMedia(video)
+                        // div.append(canvas)
                         const displaySize = { width: video.width, height: video.height }
                         faceapi.matchDimensions(canvas, displaySize)
                         setInterval(async () => {

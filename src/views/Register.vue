@@ -28,8 +28,13 @@
 
               <div class="form-jurusan">
                 <label for="jurusan">Jurusan</label>
-                <input type="text" id="jurusan" class="form-control" placeholder="Jurusan anda" autocomplete="off" v-model="jurusan">
-                <span class="material-icons">person</span>
+                <!-- <input type="text" id="jurusan" class="form-control" placeholder="Jurusan anda" autocomplete="off" v-model="jurusan"> -->
+                <!-- dropdown jurusan -->
+                <select name="jurusan" id="jurusan" v-model="jurusan">
+                  <option>Kelas anda</option>
+                  <option v-for="data in dataKelas" :key="data.id_kelas">{{data.nama}}</option>
+                </select>
+                <!-- <span class="material-icons">person</span> -->
               </div>
 
               <div class="form-email">
@@ -58,6 +63,7 @@
 
 <script>
 import { createAccount } from '@/services/authentication/register.service.js'
+import { getDataKelas } from '@/services/kelas/kelas.service.js'
 
 export default {
     name: 'RegisterApp',
@@ -65,13 +71,15 @@ export default {
         return{
             nis: null,
             name: null,
+            kelas_id: null,
             jurusan: null,
             email: null,
-            password: null
+            password: null,
+            dataKelas: []
         }
     },
     mounted(){
-
+        this.getData()
     },
     methods: {
         create(){
@@ -93,14 +101,14 @@ export default {
                           duration: 1500
                         })
                         setTimeout(() => {
-                          this.$router.push({ name: 'Dashboard'})
+                          this.$router.push({ name: 'Sign In'})
                         }, 1600)
                         console.log('ini result', result)
                     } else {
-                    this.$toast.error('Gagal membuat akun baru!', {
-                        position: 'top-right',
-                        duration: 2000
-                    })
+                        this.$toast.error('Gagal membuat akun baru!', {
+                            position: 'top-right',
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(() => {
@@ -109,6 +117,16 @@ export default {
                     duration: 2000
                   })
                 })
+        },
+        getData() {
+          getDataKelas()
+          .then((result) => {
+                this.dataKelas = (result.data).sort((a, b) => {return b.updatedAt - a.updatedAt})
+                console.log('ini response api', this.dataKelas[0])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
         }
     }
 }

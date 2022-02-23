@@ -20,6 +20,9 @@ class ApiRoute {
 
     //---------- Api Permission
     this.permission = '/api/permission'
+    
+    //---------- Api Kelas
+    this.kelas = '/api/kelas'
   }
 } 
 
