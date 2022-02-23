@@ -16,13 +16,13 @@
             <div class="form-register">
               <div class="form-nis">
                 <label for="nis">Nomor Induk Siswa</label>
-                <input type="number" id="nis" class="form-control" placeholder="NIS anda" autocomplete="off" v-model="nis">
+                <input type="number" id="nis" class="form-control" placeholder="NIS anda" autocomplete="off" v-model="nis" required>
                 <span class="material-icons">tag</span>
               </div>
 
               <div class="form-name">
                 <label for="name">Nama</label>
-                <input type="text" id="name" class="form-control" placeholder="Nama anda" autocomplete="off" v-model="name">
+                <input type="text" id="name" class="form-control" placeholder="Nama anda" autocomplete="off" v-model="name" required>
                 <span class="material-icons">person</span>
               </div>
 
@@ -30,22 +30,32 @@
                 <label for="jurusan">Jurusan</label>
                 <!-- <input type="text" id="jurusan" class="form-control" placeholder="Jurusan anda" autocomplete="off" v-model="jurusan"> -->
                 <!-- dropdown jurusan -->
-                <select name="jurusan" id="jurusan" v-model="jurusan">
+                <select style="padding: 9px 10px;font-size: 14px;" name="jurusan" id="jurusan" v-model="jurusan" required>
                   <option>Kelas anda</option>
-                  <option v-for="data in dataKelas" :key="data.id_kelas">{{data.nama}}</option>
+                  <!-- <option v-for="data in dataKelas" :key="data.id_kelas">{{data.nama}}</option> -->
+                  <option value="1">Rekayasa Perangkat Lunak 1</option>
+                  <option value="2">Rekayasa Perangkat Lunak 2</option>
+                  <option value="3">Rekayasa Perangkat Lunak 3</option>
+                  
+                  <option value="4">Teknik Komputer Jaringan 1</option>
+                  <option value="5">Teknik Komputer Jaringan 2</option>
+                  
+                  <option value="6">Multimedia</option>
+
+
                 </select>
                 <!-- <span class="material-icons">person</span> -->
               </div>
 
               <div class="form-email">
                 <label for="email">Email</label>
-                <input type="text" id="email" class="form-control" placeholder="Email anda" autocomplete="off" v-model="email">
+                <input type="text" id="email" class="form-control" placeholder="Email anda" autocomplete="off" v-model="email" required>
                 <span class="material-icons">mail</span>
               </div>
 
               <div class="form-password">
                 <label for="password">Kata Sandi</label>
-                <input type="password" id="password" class="form-control" placeholder="Kata sandi anda" autocomplete="off" v-model="password">
+                <input type="password" id="password" class="form-control" placeholder="Kata sandi anda" autocomplete="off" v-model="password" required>
                 <span class="material-icons">https</span>
                 <p>Sudah punya akun?</p> <router-link :to="{ name: 'Sign In' }" class="txt-redirect-login">Silakan Masuk</router-link> 
               </div>
