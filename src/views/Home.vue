@@ -152,7 +152,7 @@
             <div class="card">
               <div class="card-body card-date">
                 <template>
-                  <clock :time="time" size="200px" style="margin-top:-56px;"></clock>
+                  <clock :time="time" size="200px" class="analog-time" style="margin-top:-56px;"></clock>
                 </template>
                 <vCalendar :from-page="{ month: 2, year: 2022}" :timezone="timezone" :attributes="attrs" />
                 <p class="info-datetime mt-3"></p>
