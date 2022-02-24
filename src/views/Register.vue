@@ -95,9 +95,19 @@ export default {
                 this.kelas_id = 5
               } else if(this.jurusan === 'Multimedia'){
                 this.kelas_id = 6
-              } else{
-                this.kelas_id = null
-              }
+              } else if(this.jurusan === 'Teknik Audio-Video 1'){
+                this.kelas_id = 7
+              } else if(this.jurusan === 'Teknik Audio-Video 2'){
+                this.kelas_id = 8
+              } else if(this.jurusan === 'Teknik Instalasi Tenaga Listrik 1'){
+                this.kelas_id = 9
+              } else if(this.jurusan === 'Teknik Instalasi Tenaga Listrik 2'){
+                this.kelas_id = 10
+              } else if(this.jurusan === 'Teknik Otomasi Industri 1'){
+                this.kelas_id = 11
+              } else if(this.jurusan === 'Teknik Otomasi Industri 2'){
+                this.kelas_id = 12
+              } 
               let data = {
                 nis: this.nis,
                 kelas_id: this.kelas_id,
