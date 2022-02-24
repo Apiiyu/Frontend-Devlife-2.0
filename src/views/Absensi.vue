@@ -390,6 +390,8 @@ export default {
                     position: 'top-right',
                     duration: 2000
                 })
+                console.log('ini data', this.formData)
+
                 return false
             }
 
