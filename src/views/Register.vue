@@ -30,19 +30,9 @@
                 <label for="jurusan">Jurusan</label>
                 <!-- <input type="text" id="jurusan" class="form-control" placeholder="Jurusan anda" autocomplete="off" v-model="jurusan"> -->
                 <!-- dropdown jurusan -->
-                <select style="padding: 9px 10px;font-size: 14px;" name="jurusan" id="jurusan" v-model="jurusan" required>
-                  <option>Kelas anda</option>
-                  <!-- <option v-for="data in dataKelas" :key="data.id_kelas">{{data.nama}}</option> -->
-                  <option value="1">Rekayasa Perangkat Lunak 1</option>
-                  <option value="2">Rekayasa Perangkat Lunak 2</option>
-                  <option value="3">Rekayasa Perangkat Lunak 3</option>
-                  
-                  <option value="4">Teknik Komputer Jaringan 1</option>
-                  <option value="5">Teknik Komputer Jaringan 2</option>
-                  
-                  <option value="6">Multimedia</option>
-
-
+                <select style="padding: 9px 10px;font-size: 14px;"  name="jurusan" id="jurusan" v-model="jurusan" required>
+                  <option value="" disabled>Kelas anda</option> <!-- placeholder -->
+                  <option v-for="data in dataKelas" :key="data.id_kelas">{{data.nama}}</option>
                 </select>
                 <!-- <span class="material-icons">person</span> -->
               </div>
@@ -93,8 +83,24 @@ export default {
     },
     methods: {
         create(){
-            let data = {
+              if(this.jurusan === 'Rekayasa Perangkat Lunak 1'){
+                this.kelas_id = 1
+              } else if(this.jurusan === 'Rekayasa Perangkat Lunak 2'){
+                this.kelas_id = 2
+              } else if(this.jurusan === 'Rekayasa Perangkat Lunak 3'){
+                this.kelas_id = 3
+              } else if(this.jurusan === 'Teknik Komputer Jaringan 1'){
+                this.kelas_id = 4
+              } else if(this.jurusan === 'Teknik Komputer Jaringan 2'){
+                this.kelas_id = 5
+              } else if(this.jurusan === 'Multimedia'){
+                this.kelas_id = 6
+              } else{
+                this.kelas_id = null
+              }
+              let data = {
                 nis: this.nis,
+                kelas_id: this.kelas_id,
                 name: this.name,
                 jurusan: this.jurusan,
                 email: this.email,
