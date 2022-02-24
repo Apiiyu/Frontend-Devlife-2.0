@@ -13,11 +13,11 @@
 
         <div class="d-flex justify-content-center align-items-center nav-day ml-3">
             <ul class="pt-3">
-              <li class="active">Senin</li>
-              <li>Selasa</li>
-              <li>Rabu</li>
-              <li>Kamis</li>
-              <li>Jumat</li>
+              <li class="senin active" @click="onClickSenin">Senin</li>
+              <li class="selasa" @click="onClickSelasa">Selasa</li>
+              <li class="rabu" @click="onClickRabu">Rabu</li>
+              <li class="kamis" @click="onClickKamis">Kamis</li>
+              <li class="jumat" @click="onClickJumat">Jumat</li>
             </ul>
         </div>
 
@@ -58,6 +58,8 @@ import Navbar from '@/components/navigation/Navbar.vue'
 import Sidebar from '@/components/navigation/Sidebar.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import { getDataMapel } from '@/services/mapel/mapel.service.js'
+import $ from 'jquery'
+window.$ = $
 
 export default {
     name: 'Jadwal',
@@ -68,15 +70,138 @@ export default {
     },
     data(){
         return {
-            dataMapel: []
+            dataMapel: [],
+            hari: 'Senin'
         }
     },
     mounted() {
         this.getData()
     },
     methods: {
+        onClickSenin(){
+            this.hari = 'Senin'
+            if ($('.selasa').hasClass('active')){
+                $('.selasa').removeClass('active')
+                $('.senin').addClass('active')
+                
+                return false
+            } else if ($('.rabu').hasClass('active')){
+                $('.rabu').removeClass('active')
+                $('.senin').addClass('active')
+
+                return false
+            } else if ($('.kamis').hasClass('active')){
+                $('.kamis').removeClass('active')
+                $('.senin').addClass('active')
+
+                return false
+            } else if ($('.jumat').hasClass('active')){
+                $('.jumat').removeClass('active')
+                $('.senin').addClass('active')
+
+                return false
+            }
+
+            $('.senin').addClass('active')
+            this.getData()
+        },
+        onClickSelasa(){
+            this.hari = 'Selasa'
+
+            if ($('.senin').hasClass('active')){
+                $('.senin').removeClass('active')
+                
+                return false
+            } else if ($('.rabu').hasClass('active')){
+                $('.rabu').removeClass('active')
+
+                return false
+            } else if ($('.kamis').hasClass('active')){
+                $('.kamis').removeClass('active')
+
+                return false
+            } else if ($('.jumat').hasClass('active')){
+                $('.jumat').removeClass('active')
+
+                return false
+            }
+
+            $('.selasa').addClass('active')
+            this.getData()
+        },
+        onClickRabu(){
+            this.hari = 'Rabu'
+
+            if ($('.senin').hasClass('active')){
+                $('.senin').removeClass('active')
+                
+                return false
+            } else if ($('.selasa').hasClass('active')){
+                $('.selasa').removeClass('active')
+
+                return false
+            } else if ($('.kamis').hasClass('active')){
+                $('.kamis').removeClass('active')
+
+                return false
+            } else if ($('.jumat').hasClass('active')){
+                $('.jumat').removeClass('active')
+
+                return false
+            }
+
+            $('.rabu').addClass('active')
+            this.getData()
+        },
+        onClickKamis(){
+            this.hari = 'Kamis'
+            
+            if ($('.senin').hasClass('active')){
+                $('.senin').removeClass('active')
+                
+                return false
+            } else if ($('.selasa').hasClass('active')){
+                $('.selasa').removeClass('active')
+
+                return false
+            } else if ($('.rabu').hasClass('active')){
+                $('.rabu').removeClass('active')
+
+                return false
+            } else if ($('.jumat').hasClass('active')){
+                $('.jumat').removeClass('active')
+                return false
+            }
+
+            $('.kamis').addClass('active')
+            this.getData()
+        },
+        onClickJumat(){
+            this.hari = 'Jumat'
+
+            if ($('.senin').hasClass('active')){
+                $('.senin').removeClass('active')
+                
+                return false
+            } else if ($('.selasa').hasClass('active')){
+                $('.selasa').removeClass('active')
+
+                return false
+            } else if ($('.rabu').hasClass('active')){
+                $('.rabu').removeClass('active')
+
+                return false
+            } else if ($('.kamis').hasClass('active')){
+                $('.kamis').removeClass('active')
+
+                return false
+            }
+
+            $('.jumat').addClass('active')
+            this.getData()
+        },
         getData() {
-            getDataMapel()
+            getDataMapel(this.hari)
             .then((result) => {
                 this.dataMapel = (result.data).sort((a, b) => {return b.updatedAt - a.updatedAt})
                 console.log('ini response api', this.dataMapel[0])
