@@ -25,7 +25,7 @@
             <div class="col-6 mt-3" v-for="(item, index) in dataMapel" :key="index">
                 <div class="d-flex align-items-center card-mapel">
                     <div class="d-flex justify-content-center align-items-center ml-4 border-icon">
-                        <img src="@/assets/images/icon-math.svg" alt="Matematika">
+                        <img :src="item.base64_ikon" alt="Matematika">
                     </div>
 
                     <div class="line mx-3"></div>

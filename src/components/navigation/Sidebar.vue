@@ -7,7 +7,7 @@
           </div>
           <section class="profile">
             <div class="profile-picture mb-3 ">
-              <img class="mt-3" src="@/assets/images/pp.png" alt="profile-picture" width="85">
+              <img class="mt-3 rounded-circle" :src="dataUser.avatar" alt="profile-picture" width="85">
               <h6 class="mt-2 ff-poopins">{{ dataUser.nis }}</h6>
               <h4 class="ff-poopins">{{ dataUser.name }}</h4>
               <h6 class="ff-poopins">{{ dataUser.jurusan }}</h6>

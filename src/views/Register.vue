@@ -2,7 +2,7 @@
   <section class="register">
     <div class="row">
       <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <img src="@/assets/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
+        <img style="height: auto;" src="@/assets/images/bg-sign.jpg" alt="bg-sign" class="bg-sign">
       </div>
 
       <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 main-content-register">
