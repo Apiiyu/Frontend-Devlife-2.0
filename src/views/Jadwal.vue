@@ -31,7 +31,7 @@
                     <div class="line mx-3"></div>
 
                     <div class="content-mapel ">
-                        <h4 class="ff-raleway">{{ item.nama_matpel }}</h4>
+                        <h6 class="ff-raleway" style="font-size:1.2rem; color:#4e4081;">{{ item.nama_matpel }}</h6>
                         <div class="info-mapel">
                             <div class="row">
                                 <div class="col-md-6">
