@@ -6,6 +6,7 @@ import store from './store'
 import VueSweetalert2 from 'vue-sweetalert2';
 import VuePageTransition from 'vue-page-transition'
 import VueToast from 'vue-toast-notification'
+import VueExcelXlsx from 'vue-excel-xlsx'
 
 // Css
 import 'vue-toast-notification/dist/theme-sugar.css'
@@ -37,6 +38,7 @@ import 'chart.js/dist/Chart.js'
 import 'chart.js/dist/Chart.min.js'
 import 'face-api.js/dist/face-api.min.js'
 
+Vue.use(VueExcelXlsx)
 Vue.use(VueToast)
 Vue.use(VueSweetalert2)
 Vue.use(VuePageTransition)
