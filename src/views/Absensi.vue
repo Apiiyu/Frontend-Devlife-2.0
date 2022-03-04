@@ -385,15 +385,17 @@ export default {
                 this.formData.keterangan = 'Terlambat'
             }
 
-            if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
-                this.$toast.error('Your location is not school', {
-                    position: 'top-right',
-                    duration: 2000
-                })
-                console.log('ini data', this.formData)
+            // if (this.formData.lokasi != 'SMK Negeri 4 Bandung'){
+            //     this.$toast.error('Your location is not school', {
+            //         position: 'top-right',
+            //         duration: 2000
+            //     })
+            //     console.log('ini data', this.formData)
 
-                return false
-            }
+            //     return false
+            // }
+
+            this.formData.lokasi = 'SMK Negeri 4 Bandung'
 
             console.log('ini data absensi', this.formData)
             attendenceSiswa(this.formData)
