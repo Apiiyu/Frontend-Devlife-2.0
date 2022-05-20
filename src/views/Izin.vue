@@ -93,11 +93,9 @@ export default {
             console.log('ini data form', this.formData)
             postDataPermission(this.formData, this.file)
             .then(() => {
-                this.$toast.success({
-                    title: 'Berhasil',
-                    message: 'Berhasil mengajukan permohonan izin/sakit',
+                this.$toast.success('Berhasil mengajukan izin!', {
                     position: 'top-right',
-                    duration: 3000
+                    duration: 1500
                 })
             }) 
             .catch((error) => {
